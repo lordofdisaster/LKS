@@ -54,14 +54,22 @@
 		854490791FA1CB8700BDB5DB /* LKS */ = {
 			isa = PBXGroup;
 			children = (
-				8544907A1FA1CB8700BDB5DB /* AppDelegate.swift */,
+				8544908C1FA323FB00BDB5DB /* SupportingFiles */,
 				8544907C1FA1CB8700BDB5DB /* ViewController.swift */,
 				8544907E1FA1CB8700BDB5DB /* Main.storyboard */,
+			);
+			path = LKS;
+			sourceTree = "<group>";
+		};
+		8544908C1FA323FB00BDB5DB /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				8544907A1FA1CB8700BDB5DB /* AppDelegate.swift */,
 				854490811FA1CB8700BDB5DB /* Assets.xcassets */,
 				854490831FA1CB8700BDB5DB /* LaunchScreen.storyboard */,
 				854490861FA1CB8700BDB5DB /* Info.plist */,
 			);
-			path = LKS;
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
