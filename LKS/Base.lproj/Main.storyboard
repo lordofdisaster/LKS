@@ -8,7 +8,6 @@
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -140,8 +139,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="343" height="212"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Crew Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYW-23-9ct">
-                                <rect key="frame" x="95" y="0.0" width="152" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Crew Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYW-23-9ct">
+                                <rect key="frame" x="16" y="8" width="311" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -152,68 +151,39 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="evr-iI-s2r">
-                                <rect key="frame" x="16" y="29" width="311" height="125"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sqj-EC-ZT3">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gradesCell" id="Fb9-Ji-3EJ" customClass="pickGradeCell" customModule="LKS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gQM-n6-INq">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                    <connections>
-                                                        <outlet property="dataSource" destination="Fb9-Ji-3EJ" id="dj2-gU-OoU"/>
-                                                        <outlet property="delegate" destination="Fb9-Ji-3EJ" id="imm-50-Me0"/>
-                                                    </connections>
-                                                </pickerView>
-                                            </subviews>
-                                        </view>
-                                        <connections>
-                                            <outlet property="gradesPicker" destination="gQM-n6-INq" id="UEC-q4-h7F"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="62n-xb-FFG">
+                                <rect key="frame" x="16" y="37" width="311" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="B2N-Ja-4Tu"/>
+                                </constraints>
                                 <connections>
-                                    <outlet property="dataSource" destination="W7B-e5-LlI" id="8Tm-vx-jwo"/>
-                                    <outlet property="delegate" destination="W7B-e5-LlI" id="myN-LF-Dlq"/>
+                                    <outlet property="dataSource" destination="W7B-e5-LlI" id="1xu-fp-046"/>
+                                    <outlet property="delegate" destination="W7B-e5-LlI" id="fF9-GA-Zfm"/>
                                 </connections>
-                            </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bH4-Y8-Xvg">
-                                <rect key="frame" x="290" y="124" width="37" height="30"/>
-                                <state key="normal" title="Done"/>
-                            </button>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="evr-iI-s2r" firstAttribute="trailing" secondItem="f32-Ep-iuv" secondAttribute="trailingMargin" id="7D1-mB-Ipm"/>
-                            <constraint firstItem="LYW-23-9ct" firstAttribute="top" secondItem="f32-Ep-iuv" secondAttribute="top" id="9D5-NT-rYP"/>
-                            <constraint firstItem="LYW-23-9ct" firstAttribute="centerX" secondItem="evr-iI-s2r" secondAttribute="centerX" id="AUm-vd-Xi1"/>
-                            <constraint firstItem="evr-iI-s2r" firstAttribute="trailing" secondItem="Up0-LE-rXl" secondAttribute="trailing" id="Cxh-OP-ap2"/>
-                            <constraint firstItem="evr-iI-s2r" firstAttribute="leading" secondItem="f32-Ep-iuv" secondAttribute="leadingMargin" id="Lku-K0-Dg3"/>
-                            <constraint firstAttribute="bottom" secondItem="Up0-LE-rXl" secondAttribute="bottom" constant="20" symbolic="YES" id="QbL-Ju-jI6"/>
-                            <constraint firstItem="Up0-LE-rXl" firstAttribute="top" secondItem="evr-iI-s2r" secondAttribute="bottom" constant="8" symbolic="YES" id="Sfx-mo-IKO"/>
-                            <constraint firstItem="evr-iI-s2r" firstAttribute="leading" secondItem="Up0-LE-rXl" secondAttribute="leading" id="j5d-EI-eZW"/>
-                            <constraint firstItem="Up0-LE-rXl" firstAttribute="top" secondItem="bH4-Y8-Xvg" secondAttribute="bottom" constant="8" id="rcq-6j-Fbk"/>
-                            <constraint firstItem="evr-iI-s2r" firstAttribute="top" secondItem="LYW-23-9ct" secondAttribute="bottom" constant="8" symbolic="YES" id="wb2-2q-GBK"/>
-                            <constraint firstItem="55a-bM-2t3" firstAttribute="trailing" secondItem="bH4-Y8-Xvg" secondAttribute="trailing" constant="16" id="ymJ-m6-rR8"/>
+                            <constraint firstItem="55a-bM-2t3" firstAttribute="bottom" secondItem="Up0-LE-rXl" secondAttribute="bottom" constant="20" id="7X7-nP-tfQ"/>
+                            <constraint firstItem="55a-bM-2t3" firstAttribute="trailing" secondItem="LYW-23-9ct" secondAttribute="trailing" constant="16" id="BFc-hu-cb7"/>
+                            <constraint firstItem="62n-xb-FFG" firstAttribute="leading" secondItem="LYW-23-9ct" secondAttribute="trailing" constant="-311" id="DFx-JQ-qyX"/>
+                            <constraint firstItem="LYW-23-9ct" firstAttribute="top" secondItem="55a-bM-2t3" secondAttribute="top" constant="8" id="E0y-cf-5fh"/>
+                            <constraint firstItem="62n-xb-FFG" firstAttribute="leading" secondItem="55a-bM-2t3" secondAttribute="leading" constant="16" id="PTh-BR-OhC"/>
+                            <constraint firstItem="62n-xb-FFG" firstAttribute="top" secondItem="LYW-23-9ct" secondAttribute="bottom" constant="8" symbolic="YES" id="QXw-7s-Xff"/>
+                            <constraint firstItem="55a-bM-2t3" firstAttribute="trailing" secondItem="62n-xb-FFG" secondAttribute="trailing" constant="16" id="Tkr-CG-4XR"/>
+                            <constraint firstItem="55a-bM-2t3" firstAttribute="trailing" secondItem="Up0-LE-rXl" secondAttribute="trailing" constant="16" id="d6n-eR-PZz"/>
+                            <constraint firstItem="LYW-23-9ct" firstAttribute="leading" secondItem="55a-bM-2t3" secondAttribute="leading" constant="16" id="drg-Rc-5pQ"/>
+                            <constraint firstItem="Up0-LE-rXl" firstAttribute="leading" secondItem="55a-bM-2t3" secondAttribute="leading" constant="16" id="iUp-GS-kjg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="55a-bM-2t3"/>
                     </view>
+                    <connections>
+                        <outlet property="gradePicker" destination="62n-xb-FFG" id="Pbk-dS-PNk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C5W-gg-uAS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.60000000000002" y="751.57421289355329"/>
+            <point key="canvasLocation" x="749.60000000000002" y="751.12443778110946"/>
         </scene>
         <!--Ranks Table View Controller-->
         <scene sceneID="OHr-FE-wQD">
