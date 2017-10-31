@@ -16,8 +16,6 @@ class estimationViewController: UIViewController, UIPickerViewDataSource, UIPick
     let category = Estimation().category
     let grades = Estimation().grades
 
-    
-    
     func showCathegory() {
         let labelWidth = categoryLabel.frame.width / CGFloat(gradePicker.numberOfComponents)
         for index in 0..<category.count {
@@ -38,9 +36,9 @@ class estimationViewController: UIViewController, UIPickerViewDataSource, UIPick
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    }
 
+    }
+    
 }
 
 extension estimationViewController {
