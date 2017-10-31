@@ -7,9 +7,12 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseDatabase
 
 class FBManager {
+    
+    var ref: DatabaseReference = Database.database().reference()
+    
     func createCrew()
     {
         

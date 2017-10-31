@@ -16,6 +16,7 @@
 		854490851FA1CB8700BDB5DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 854490831FA1CB8700BDB5DB /* LaunchScreen.storyboard */; };
 		8544908E1FA326EE00BDB5DB /* estimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544908D1FA326EE00BDB5DB /* estimationViewController.swift */; };
 		85AD39BD1FA71D1C00AFE910 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85AD39BC1FA71D1B00AFE910 /* GoogleService-Info.plist */; };
+		85E410101FA85B3B00BD69AE /* MainControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E4100F1FA85B3B00BD69AE /* MainControllerModel.swift */; };
 		C6BAC2D678B4CAECEF5DEFC4 /* Pods_LKS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 500667FB191CC9234475E445 /* Pods_LKS.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		8544908D1FA326EE00BDB5DB /* estimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = estimationViewController.swift; sourceTree = "<group>"; };
 		85AD39BB1FA70CF500AFE910 /* LKS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LKS.entitlements; sourceTree = "<group>"; };
 		85AD39BC1FA71D1B00AFE910 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		85E4100F1FA85B3B00BD69AE /* MainControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainControllerModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,8 +94,7 @@
 				85AD39BB1FA70CF500AFE910 /* LKS.entitlements */,
 				8544908C1FA323FB00BDB5DB /* SupportingFiles */,
 				850DC9611FA8294400CA3F89 /* View */,
-				850DC9621FA8296400CA3F89 /* Crew.swift */,
-				850DC9641FA83F3900CA3F89 /* FireBaseManager.swift */,
+				85E4100E1FA85A1D00BD69AE /* Model */,
 				854490861FA1CB8700BDB5DB /* Info.plist */,
 				85AD39BC1FA71D1B00AFE910 /* GoogleService-Info.plist */,
 			);
@@ -108,6 +109,16 @@
 				854490831FA1CB8700BDB5DB /* LaunchScreen.storyboard */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		85E4100E1FA85A1D00BD69AE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				85E4100F1FA85B3B00BD69AE /* MainControllerModel.swift */,
+				850DC9621FA8296400CA3F89 /* Crew.swift */,
+				850DC9641FA83F3900CA3F89 /* FireBaseManager.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		EAD5F9F56511A51948D7F16B /* Frameworks */ = {
@@ -203,11 +214,15 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LKS/Pods-LKS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,6 +274,7 @@
 				852C77221FA3409300E0EFF1 /* ranksTableViewController.swift in Sources */,
 				850DC9631FA8296400CA3F89 /* Crew.swift in Sources */,
 				8544908E1FA326EE00BDB5DB /* estimationViewController.swift in Sources */,
+				85E410101FA85B3B00BD69AE /* MainControllerModel.swift in Sources */,
 				850DC9651FA83F3900CA3F89 /* FireBaseManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
