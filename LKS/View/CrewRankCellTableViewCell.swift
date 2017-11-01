@@ -14,7 +14,9 @@ class CrewRankCellTableViewCell: UITableViewCell {
 
     @IBOutlet weak var crewInfo: UILabel!
     
-    let array = ["Apachie Crew","2","3","4","5","6"]
+    let array = ["Lenas team","2","3","4","5","6"]
+  //  let array = FBManager().getCrewsArrayFromCategory()
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,6 +39,7 @@ class CrewRankCellTableViewCell: UITableViewCell {
             let label = UILabel.init(frame: rect)
             label.text = array[index]
             label.textAlignment = .center
+            label.adjustsFontSizeToFitWidth = true
             self.crewInfo.addSubview(label)
         }
     }

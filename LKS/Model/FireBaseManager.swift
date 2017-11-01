@@ -13,18 +13,14 @@ class FBManager {
     
     var ref: DatabaseReference = Database.database().reference()
     
-    func createCrew()
-    {
-        
-    }
-    
     func updateInfo()
     {
         
     }
     
-    func getInfoFromCategory()
+    func getCrewsArrayFromCategory() -> [String]
     {
         
+        return ["hello"]
     }
 }
