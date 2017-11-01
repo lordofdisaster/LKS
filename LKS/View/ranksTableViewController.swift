@@ -12,23 +12,24 @@ class ranksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var categoryLabel: UILabel!
     
-    let category = ["TECHNIQUE", "CHARACHTER", "PERFOMANCE", "MESSAGE", "TOTAL"]
+    let category = ["CREW NAME","TECHNIQUE", "CHARACHTER", "PERFOMANCE", "MESSAGE", "TOTAL SCORE"]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "crewCell", for: indexPath) 
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "crewCell", for: indexPath) as! CrewRankCellTableViewCell
+        cell.configureCell(labelWidth: categoryLabel.frame.width)
         return cell
+        
     }
-    
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
           showHeader()
+        
     }
 
     override func viewDidLoad() {
