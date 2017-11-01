@@ -11,12 +11,12 @@ import UIKit
 class CrewRankCellTableViewCell: UITableViewCell {
     
     @IBOutlet weak var crewName: UILabel!
-    @IBOutlet weak var cewTotalPoints: UILabel!
-    
+
+    let array = ["1","2","3","4","5","6"]
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+         showCathegory()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -24,5 +24,18 @@ class CrewRankCellTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+
+    
+    func showCathegory() {
+        let labelWidth = crewName.frame.width / CGFloat(array.count)
+        for index in 0..<array.count {
+            let rect = CGRect(x: crewName.frame.origin.x + labelWidth * CGFloat(index), y: 0, width: labelWidth, height: 20)
+            let label = UILabel.init(frame: rect)
+            label.text = array[index]
+            label.textAlignment = .center
+            crewName.addSubview(label)
+        }
+    }
+    
 
 }

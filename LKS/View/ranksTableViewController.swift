@@ -11,7 +11,8 @@ import UIKit
 class ranksTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var categoryLabel: UILabel!
-    let category = ["CREW NAME", "TECHNIQUE", "CHARACHTER", "PERFOMANCE", "MESSAGE", "TOTAL"]
+    
+    let category = ["TECHNIQUE", "CHARACHTER", "PERFOMANCE", "MESSAGE", "TOTAL"]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -27,7 +28,7 @@ class ranksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-          showCathegory()
+          showHeader()
     }
 
     override func viewDidLoad() {
@@ -44,7 +45,7 @@ class ranksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     */
 
-    func showCathegory() {
+    func showHeader() {
         let labelWidth = categoryLabel.frame.width / CGFloat(category.count)
         for index in 0..<category.count {
             let rect = CGRect(x: categoryLabel.frame.origin.x + labelWidth * CGFloat(index), y: 0, width: labelWidth, height: 20)
