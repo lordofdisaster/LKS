@@ -11,9 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var nominationDescriptiveImage: UIImageView!
-    
     @IBOutlet weak var legueDescriptiveImage: UIImageView!
-    
     @IBOutlet weak var ageLeagueDescriptiveImage: UIImageView!
     
     
@@ -25,9 +23,9 @@ class ViewController: UIViewController {
         RMConfig.updateViewWithRCValues()
         RMConfig.fetchRemoteConfig()
         
-        self.nominationDescriptiveImage.image = UIImage(named: "WAM_logo")
-        self.ageLeagueDescriptiveImage.image = UIImage(named: "WAM_logo")
-        self.legueDescriptiveImage.image = UIImage(named: "WAM_logo")
+//        self.nominationDescriptiveImage.image = UIImage(named: "WAM_logo")
+//        self.ageLeagueDescriptiveImage.image = UIImage(named: "WAM_logo")
+//        self.legueDescriptiveImage.image = UIImage(named: "WAM_logo")
     }
 
 }
