@@ -16,8 +16,10 @@
 		854490851FA1CB8700BDB5DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 854490831FA1CB8700BDB5DB /* LaunchScreen.storyboard */; };
 		8544908E1FA326EE00BDB5DB /* estimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544908D1FA326EE00BDB5DB /* estimationViewController.swift */; };
 		85509DB21FA8646E00E28B21 /* CrewRankCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85509DB11FA8646E00E28B21 /* CrewRankCellTableViewCell.swift */; };
+		855444871FAAD0C300936F11 /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855444861FAAD0C300936F11 /* RemoteConfig.swift */; };
 		85AD39BD1FA71D1C00AFE910 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85AD39BC1FA71D1B00AFE910 /* GoogleService-Info.plist */; };
 		85E410101FA85B3B00BD69AE /* MainControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E4100F1FA85B3B00BD69AE /* MainControllerModel.swift */; };
+		85EA58C21FAAF008003C4C99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EA58C11FAAF008003C4C99 /* ViewController.swift */; };
 		C6BAC2D678B4CAECEF5DEFC4 /* Pods_LKS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 500667FB191CC9234475E445 /* Pods_LKS.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,9 +38,11 @@
 		854490861FA1CB8700BDB5DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8544908D1FA326EE00BDB5DB /* estimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = estimationViewController.swift; sourceTree = "<group>"; };
 		85509DB11FA8646E00E28B21 /* CrewRankCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewRankCellTableViewCell.swift; sourceTree = "<group>"; };
+		855444861FAAD0C300936F11 /* RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfig.swift; sourceTree = "<group>"; };
 		85AD39BB1FA70CF500AFE910 /* LKS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LKS.entitlements; sourceTree = "<group>"; };
 		85AD39BC1FA71D1B00AFE910 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		85E4100F1FA85B3B00BD69AE /* MainControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainControllerModel.swift; sourceTree = "<group>"; };
+		85EA58C11FAAF008003C4C99 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,7 @@
 				852C77211FA3409300E0EFF1 /* ranksTableViewController.swift */,
 				85509DB11FA8646E00E28B21 /* CrewRankCellTableViewCell.swift */,
 				8544908D1FA326EE00BDB5DB /* estimationViewController.swift */,
+				85EA58C11FAAF008003C4C99 /* ViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 				85E4100F1FA85B3B00BD69AE /* MainControllerModel.swift */,
 				850DC9621FA8296400CA3F89 /* Crew.swift */,
 				850DC9641FA83F3900CA3F89 /* FireBaseManager.swift */,
+				855444861FAAD0C300936F11 /* RemoteConfig.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -276,10 +282,12 @@
 				8544907B1FA1CB8700BDB5DB /* AppDelegate.swift in Sources */,
 				852C77221FA3409300E0EFF1 /* ranksTableViewController.swift in Sources */,
 				850DC9631FA8296400CA3F89 /* Crew.swift in Sources */,
+				85EA58C21FAAF008003C4C99 /* ViewController.swift in Sources */,
 				8544908E1FA326EE00BDB5DB /* estimationViewController.swift in Sources */,
 				85E410101FA85B3B00BD69AE /* MainControllerModel.swift in Sources */,
 				85509DB21FA8646E00E28B21 /* CrewRankCellTableViewCell.swift in Sources */,
 				850DC9651FA83F3900CA3F89 /* FireBaseManager.swift in Sources */,
+				855444871FAAD0C300936F11 /* RemoteConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

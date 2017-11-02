@@ -13,6 +13,7 @@ class estimationViewController: UIViewController, UIPickerViewDataSource, UIPick
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var gradePicker: UIPickerView!
     
+    
     let category = Estimation().category
     let grades = Estimation().grades
 
@@ -36,9 +37,7 @@ class estimationViewController: UIViewController, UIPickerViewDataSource, UIPick
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
-    
 }
 
 extension estimationViewController {
