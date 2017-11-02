@@ -13,15 +13,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var nominationDescriptiveImage: UIImageView!
     @IBOutlet weak var legueDescriptiveImage: UIImageView!
     @IBOutlet weak var ageLeagueDescriptiveImage: UIImageView!
-    
+    @IBOutlet weak var currentCrewName: UILabel! 
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let RMConfig = RemoteConfigConfiguration()
-        RMConfig.setupRemoteConfigDefaults()
-        RMConfig.updateViewWithRCValues()
-        RMConfig.fetchRemoteConfig()
         
 //        self.nominationDescriptiveImage.image = UIImage(named: "WAM_logo")
 //        self.ageLeagueDescriptiveImage.image = UIImage(named: "WAM_logo")
