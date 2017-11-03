@@ -8,14 +8,23 @@
 
 import UIKit
 
+protocol updateHeaderInformationWithRC: class {
+    func updateHeaderInformation()
+}
+
+
 class estimationViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate  {
     
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var gradePicker: UIPickerView!
-    
+    @IBAction func confirmationButton(_ sender: Any) {
+        delegate?.updateHeaderInformation()
+    }
     
     let category = Estimation().category
     let grades = Estimation().grades
+    weak var delegate: updateHeaderInformationWithRC?
+    
 
     func showCathegory() {
         let labelWidth = categoryLabel.frame.width / CGFloat(gradePicker.numberOfComponents)
@@ -37,6 +46,12 @@ class estimationViewController: UIViewController, UIPickerViewDataSource, UIPick
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if (self.delegate == nil) {
+            let some = ViewController()
+            self.delegate = some
+        }
+
     }
 }
 

@@ -143,6 +143,9 @@
                                     <constraint firstAttribute="width" constant="71" id="UfM-cy-Dpi"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="confirmationButton:" destination="W7B-e5-LlI" eventType="touchUpInside" id="lgw-Ff-Nk5"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
