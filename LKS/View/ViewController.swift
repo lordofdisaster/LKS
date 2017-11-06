@@ -18,8 +18,7 @@ class ViewController: UIViewController, updateHeaderInformationWithRC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let estimationVC = estimationViewController()
-        estimationVC.delegate = self
+
 //        self.nominationDescriptiveImage.image = UIImage(named: "WAM_logo")
 //        self.ageLeagueDescriptiveImage.image = UIImage(named: "WAM_logo")
 //        self.legueDescriptiveImage.image = UIImage(named: "WAM_logo")
@@ -33,5 +32,13 @@ class ViewController: UIViewController, updateHeaderInformationWithRC {
     func updateHeaderInformation() {
         Constants().setupAPP()
         nominationDescriptiveImage.image = UIImage(named: Constants().getNewImageContents())
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToEstimationView" {
+            if let vc = segue.destination as? estimationViewController {
+                vc.delegate = self
+            }
+        }
     }
 }

@@ -46,13 +46,9 @@ class estimationViewController: UIViewController, UIPickerViewDataSource, UIPick
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if (self.delegate == nil) {
-            let some = ViewController()
-            self.delegate = some
-        }
-
     }
+    
+    
 }
 
 extension estimationViewController {
