@@ -19,6 +19,8 @@ class ViewController: UIViewController, updateHeaderInformationWithRC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       FBManager().getCrewsArrayFromCategory()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -40,12 +42,19 @@ class ViewController: UIViewController, updateHeaderInformationWithRC {
         let alert = UIAlertController(title: "Authentification", message: "Please enter your name: ", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            
+            if alert.textFields?.count != nil {
+                let name = alert.textFields![0].text
+                print(name) // NAME OF JURY
+            }
+            
             alert.dismiss(animated: true, completion: nil)
         }))
         
         alert.addTextField { (textField : UITextField) -> Void in
             textField.placeholder = "Name"
         }
+        
         self.present(alert, animated: true, completion: nil)
     }
     

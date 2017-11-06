@@ -20,6 +20,25 @@ class FBManager {
     
     func getCrewsArrayFromCategory() -> [String]
     {
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            
+            if snapshot.exists() {
+                let dataBase = snapshot.value as? [String:AnyObject]
+                print(dataBase)
+            }
+//            if let userName = snapshot.value["full_name"] as? String {
+//                print(userName)
+//            }
+//            if let email = snapshot.value["email"] as? String {
+//                print(email)
+//            }
+            
+            // can also use
+            // snapshot.childSnapshotForPath("full_name").value as! String
+        })
+        
+        
+        
         
         return ["hello"]
     }
