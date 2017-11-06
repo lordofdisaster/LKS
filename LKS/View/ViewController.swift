@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController, updateHeaderInformationWithRC {
 
@@ -19,6 +20,11 @@ class ViewController: UIViewController, updateHeaderInformationWithRC {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        createAuthAlert()
+    }
 
     func updateHeaderInformation() {
         Constants().setupAPP()
@@ -28,6 +34,19 @@ class ViewController: UIViewController, updateHeaderInformationWithRC {
         leagueDescriptiveImage.image = UIImage(named: Constants().getNewImageContentsForLeague(forKey: Constants.ValueKey(rawValue: Constants.ValueKey.league.rawValue)!))
         
         ageLeagueDescriptiveImage.image = UIImage(named: Constants().getNewImageContentsForAge(forKey: Constants.ValueKey(rawValue: Constants.ValueKey.age.rawValue)!))
+    }
+    
+    func createAuthAlert() {
+        let alert = UIAlertController(title: "Authentification", message: "Please enter your name: ", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        alert.addTextField { (textField : UITextField) -> Void in
+            textField.placeholder = "Name"
+        }
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
