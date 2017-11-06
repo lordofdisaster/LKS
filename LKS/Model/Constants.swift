@@ -12,10 +12,18 @@ import Firebase
 class Constants: NSObject {
     
     var remoteConfig:RemoteConfig!
+    enum ValueKey: String {
+        case nomination
+        case league
+        case age
+    }
     
     func createDefaults() {
         let defaults : [String: NSObject] = [
-            "imageContents" : "WAM_logo" as NSObject
+            ValueKey.nomination.rawValue : "WAM_logo" as NSObject,
+            ValueKey.league.rawValue : "WAM_logo" as NSObject,
+            ValueKey.age.rawValue : "WAM_logo" as NSObject
+            
         ]
         remoteConfig = RemoteConfig.remoteConfig()
         let remoteConfigSettings = RemoteConfigSettings(developerModeEnabled: true)
@@ -36,8 +44,18 @@ class Constants: NSObject {
         }
     }
     
-    func getNewImageContents() -> String {
+    func getNewImageContentsForNomination(forKey key: ValueKey) -> String {
         createDefaults()
-        return self.remoteConfig["imageContents"].stringValue!
+        return self.remoteConfig[key.rawValue].stringValue ?? ""
+    }
+
+    func getNewImageContentsForLeague(forKey key: ValueKey) -> String {
+        createDefaults()
+        return self.remoteConfig[key.rawValue].stringValue ?? ""
+    }
+    
+    func getNewImageContentsForAge(forKey key: ValueKey) -> String {
+        createDefaults()
+        return self.remoteConfig[key.rawValue].stringValue ?? ""
     }
 }

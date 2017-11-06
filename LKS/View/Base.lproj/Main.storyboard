@@ -96,7 +96,7 @@
                     <connections>
                         <outlet property="ageLeagueDescriptiveImage" destination="5mM-N7-lcW" id="HpO-9p-w0C"/>
                         <outlet property="currentCrewName" destination="LYW-23-9ct" id="2Ra-jj-B7k"/>
-                        <outlet property="legueDescriptiveImage" destination="pzB-bm-w3H" id="p2N-Lm-Top"/>
+                        <outlet property="leagueDescriptiveImage" destination="pzB-bm-w3H" id="p2N-Lm-Top"/>
                         <outlet property="nominationDescriptiveImage" destination="s1D-Kh-QEk" id="sN4-bk-XzN"/>
                     </connections>
                 </viewController>
