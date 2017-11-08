@@ -7,26 +7,23 @@
 //
 
 import Foundation
-class Crew {
+class Crew
+{
     var name = String()
-    var comment  = String()
     var score = Score()
+    var nomination: String
+    var league: String
+    var ageCategory: String
     
     init (_name: String,
-          _comment: String,
-          _technique: Int,
-          _charachter: Int,
-          _perfomance: Int,
-          _message: Int)
+          _nomination: Nomination.RawValue,
+          _league: League.RawValue,
+          _ageCategory: AgeCategory.RawValue)
     {
         name = _name
-        comment = _comment
-        score.technique = _technique
-        score.charachter = _charachter
-        score.perfomance = _perfomance
-        score.message = _message
-        score.total = _technique + _charachter + _perfomance + _message
-
+        nomination = _nomination
+        league = _league
+        ageCategory = _ageCategory
     }
 }
 
@@ -38,5 +35,28 @@ struct Score
     var message = 0
     var total = 0
 }
-    
+
+enum Nomination: String
+{
+    case bestStreetCrew = "Best Street Crew"
+    case bestClassicCrew = "Best Classic Crew"
+    case bestFolcCrew = "Best Folc Crew"
+    case bestExtraordinaryCrew = "Best Extraordinary Crew"
+    case bestSolo = "Best Solo"
+}
+
+
+enum League: String
+{
+    case funLeague = "Fun League"
+    case proLeague = "Pro League"
+}
+
+enum AgeCategory: String
+{
+    case kids = "Kids"
+    case juniors = "Juniors"
+    case adults = "Adults"
+}
+
 

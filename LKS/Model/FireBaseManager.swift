@@ -13,33 +13,32 @@ class FBManager {
     
     var ref: DatabaseReference = Database.database().reference()
     
-    func updateInfo()
-    {
+    //FIXME:- complete the method
+    
+    func putCrewToDataBase(crew: Crew) {
+        let crew = Crew(_name: "hello", _nomination: Nomination.bestClassicCrew.rawValue, _league: League.funLeague.rawValue, _ageCategory: AgeCategory.adults.rawValue)
+        
         
     }
     
     func getCrewsArrayFromCategory() -> [String]
     {
-        ref.observeSingleEvent(of: .value, with: { snapshot in
-            
-            if snapshot.exists() {
-                let dataBase = snapshot.value as? [String:AnyObject]
-                print(dataBase)
-            }
-//            if let userName = snapshot.value["full_name"] as? String {
-//                print(userName)
+//        ref.observeSingleEvent(of: .value, with: { snapshot in
+//
+//            if snapshot.exists() {
+//                let dataBase = snapshot.value as! [String: Any]
+//                print(dataBase)
+//
+//                do {
+//                    let some = try JSONDecoder().decode(LKS.self, from: dataBase)
+//
+//                    print("------------------------------")
+//                    print(some)
+//                }   catch let error {
+//                    print(error.localizedDescription)
+//                }
 //            }
-//            if let email = snapshot.value["email"] as? String {
-//                print(email)
-//            }
-            
-            // can also use
-            // snapshot.childSnapshotForPath("full_name").value as! String
-        })
-        
-        
-        
-        
+//        })
         return ["hello"]
     }
 }
