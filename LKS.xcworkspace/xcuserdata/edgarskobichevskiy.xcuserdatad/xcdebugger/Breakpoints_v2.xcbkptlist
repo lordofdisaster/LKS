@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LKS/Model/FireBaseManager.swift"
-            timestampString = "531759248.043026"
+            timestampString = "531986491.179859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "17"
             endingLineNumber = "17"
-            landmarkName = "putCrewToDataBase(crew:)"
-            landmarkType = "7">
+            landmarkName = "FBManager"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

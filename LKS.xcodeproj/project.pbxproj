@@ -17,6 +17,7 @@
 		8544908E1FA326EE00BDB5DB /* estimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544908D1FA326EE00BDB5DB /* estimationViewController.swift */; };
 		85509DB21FA8646E00E28B21 /* CrewRankCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85509DB11FA8646E00E28B21 /* CrewRankCellTableViewCell.swift */; };
 		85AD39BD1FA71D1C00AFE910 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85AD39BC1FA71D1B00AFE910 /* GoogleService-Info.plist */; };
+		85B09A631FB59B2100A5E5E8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B09A621FB59B2100A5E5E8 /* LoginViewController.swift */; };
 		85CE5CC71FAC1D5F00FB9C1E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CE5CC61FAC1D5F00FB9C1E /* Constants.swift */; };
 		85E410101FA85B3B00BD69AE /* MainControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E4100F1FA85B3B00BD69AE /* MainControllerModel.swift */; };
 		85EA58C21FAAF008003C4C99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EA58C11FAAF008003C4C99 /* ViewController.swift */; };
@@ -40,6 +41,7 @@
 		85509DB11FA8646E00E28B21 /* CrewRankCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewRankCellTableViewCell.swift; sourceTree = "<group>"; };
 		85AD39BB1FA70CF500AFE910 /* LKS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LKS.entitlements; sourceTree = "<group>"; };
 		85AD39BC1FA71D1B00AFE910 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		85B09A621FB59B2100A5E5E8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = LKS/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
 		85CE5CC61FAC1D5F00FB9C1E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		85E4100F1FA85B3B00BD69AE /* MainControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainControllerModel.swift; sourceTree = "<group>"; };
 		85EA58C11FAAF008003C4C99 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,16 +68,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		850DC9611FA8294400CA3F89 /* View */ = {
+		850DC9611FA8294400CA3F89 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8544907E1FA1CB8700BDB5DB /* Main.storyboard */,
 				852C77211FA3409300E0EFF1 /* ranksTableViewController.swift */,
 				85509DB11FA8646E00E28B21 /* CrewRankCellTableViewCell.swift */,
 				8544908D1FA326EE00BDB5DB /* estimationViewController.swift */,
 				85EA58C11FAAF008003C4C99 /* ViewController.swift */,
 			);
-			path = View;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		8544906E1FA1CB8700BDB5DB = {
@@ -101,7 +102,7 @@
 			children = (
 				85AD39BB1FA70CF500AFE910 /* LKS.entitlements */,
 				8544908C1FA323FB00BDB5DB /* SupportingFiles */,
-				850DC9611FA8294400CA3F89 /* View */,
+				850DC9611FA8294400CA3F89 /* Controllers */,
 				85E4100E1FA85A1D00BD69AE /* Model */,
 				854490861FA1CB8700BDB5DB /* Info.plist */,
 				85AD39BC1FA71D1B00AFE910 /* GoogleService-Info.plist */,
@@ -115,6 +116,8 @@
 				8544907A1FA1CB8700BDB5DB /* AppDelegate.swift */,
 				854490811FA1CB8700BDB5DB /* Assets.xcassets */,
 				854490831FA1CB8700BDB5DB /* LaunchScreen.storyboard */,
+				8544907E1FA1CB8700BDB5DB /* Main.storyboard */,
+				85B09A621FB59B2100A5E5E8 /* LoginViewController.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				85E410101FA85B3B00BD69AE /* MainControllerModel.swift in Sources */,
 				85509DB21FA8646E00E28B21 /* CrewRankCellTableViewCell.swift in Sources */,
 				850DC9651FA83F3900CA3F89 /* FireBaseManager.swift in Sources */,
+				85B09A631FB59B2100A5E5E8 /* LoginViewController.swift in Sources */,
 				85CE5CC71FAC1D5F00FB9C1E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,7 +433,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = LKS/LKS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D3GJK3C4UV;
+				DEVELOPMENT_TEAM = W624K3Z5GN;
 				INFOPLIST_FILE = LKS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -447,7 +451,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = LKS/LKS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D3GJK3C4UV;
+				DEVELOPMENT_TEAM = W624K3Z5GN;
 				INFOPLIST_FILE = LKS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
