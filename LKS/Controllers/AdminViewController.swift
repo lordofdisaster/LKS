@@ -29,6 +29,7 @@ class AdminViewController: UIViewController {
         {
             let crew = Crew(_name: name, _nomination: nomination, _league: league, _ageCategory: ageCategory)
             print(crew.ageCategory, crew.league, crew.name, crew.nomination, crew.score)
+            FBManager.shared.putCrewToDataBase(crew: crew)
         }
         
     }

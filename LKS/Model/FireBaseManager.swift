@@ -17,32 +17,22 @@ final class FBManager {
     var juryName = String()
     
     
-    //FIXME:- complete the method
-    
-    func putCrewToDataBase(crew: Crew) {
-        let crew = Crew(_name: "hello", _nomination: Nomination.bestClassicCrew.rawValue, _league: League.funLeague.rawValue, _ageCategory: AgeCategory.adults.rawValue)
+    func putCrewToDataBase(crew: Crew)
+    {
+        self.ref.child("CREW/" + crew.name).setValue(["nomination": crew.nomination,
+                                            "ageCategory": crew.ageCategory,
+                                            "league": crew.league])
         
-        
+        self.ref.child("CREW/" + crew.name + "/score").setValue(["technique": crew.score.technique,
+                                                       "charachter": crew.score.charachter,
+                                                       "perfomance": crew.score.perfomance,
+                                                       "message": crew.score.message,
+                                                       "total": crew.score.total])
     }
     
-    func getCrewsArrayFromCategory() -> [String]
+    func getCrewsArrayFromCategory() -> [Crew]
     {
-//        ref.observeSingleEvent(of: .value, with: { snapshot in
-//
-//            if snapshot.exists() {
-//                let dataBase = snapshot.value as! [String: Any]
-//                print(dataBase)
-//
-//                do {
-//                    let some = try JSONDecoder().decode(LKS.self, from: dataBase)
-//
-//                    print("------------------------------")
-//                    print(some)
-//                }   catch let error {
-//                    print(error.localizedDescription)
-//                }
-//            }
-//        })
-        return ["hello"]
+
+        return []
     }
 }
