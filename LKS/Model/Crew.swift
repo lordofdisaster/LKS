@@ -11,9 +11,9 @@ class Crew
 {
     var name = String()
     var score = Score()
-    var nomination: String
-    var league: String
-    var ageCategory: String
+    var nomination: Nomination.RawValue
+    var league: League.RawValue
+    var ageCategory: AgeCategory.RawValue
     
     init (_name: String,
           _nomination: Nomination.RawValue,

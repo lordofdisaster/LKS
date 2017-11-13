@@ -32,7 +32,6 @@
                                 <state key="normal" title="GO!"/>
                                 <connections>
                                     <action selector="actionButtonForAdmin:" destination="5fF-bt-pAK" eventType="touchUpInside" id="1et-eT-Hrl"/>
-                                    <segue destination="E64-DH-hB4" kind="show" id="3Ds-it-PSe"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MZS-82-KCq">
@@ -103,10 +102,10 @@
             </objects>
             <point key="canvasLocation" x="-1874.4000000000001" y="106.59670164917542"/>
         </scene>
-        <!--View Controller-->
+        <!--Admin View Controller-->
         <scene sceneID="aTb-vj-TQa">
             <objects>
-                <viewController id="E64-DH-hB4" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AdminViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="E64-DH-hB4" customClass="AdminViewController" customModule="LKS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K1b-1t-fgv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -169,6 +168,9 @@
                                 <state key="normal" title="Create">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="createCrewButton:" destination="E64-DH-hB4" eventType="touchUpInside" id="KMa-5T-6vK"/>
+                                </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="TdZ-NN-XQ7">
                                 <rect key="frame" x="238" y="85" width="121" height="29"/>
@@ -213,6 +215,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KwZ-d1-bJo"/>
                     </view>
+                    <connections>
+                        <outlet property="ageCategorySegment" destination="Puj-Cg-Hhb" id="XAA-bv-XBz"/>
+                        <outlet property="crewNameTextField" destination="oiE-yB-lXi" id="EWW-Lx-O1Z"/>
+                        <outlet property="leagueSegment" destination="TdZ-NN-XQ7" id="FFy-Me-gub"/>
+                        <outlet property="nominationSegment" destination="ZqY-PY-FJz" id="8PM-uc-kXy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aSo-Hk-ynw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -221,7 +229,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="LKS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="JuryVC" id="BYZ-38-t0r" customClass="ViewController" customModule="LKS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -477,6 +485,7 @@
                             <constraint firstAttribute="bottom" secondItem="4EV-JO-oAT" secondAttribute="bottom" id="g8b-G4-W0c"/>
                             <constraint firstItem="4EV-JO-oAT" firstAttribute="leading" secondItem="FwD-bq-8VT" secondAttribute="leading" id="jWS-kI-yaz"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="br9-do-0Z0"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="222-YR-VNN" userLabel="First Responder" sceneMemberID="firstResponder"/>

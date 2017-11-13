@@ -19,13 +19,12 @@ class ViewController: UIViewController, updateHeaderInformationWithRC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       FBManager().getCrewsArrayFromCategory()
+        print("Name of current Jury is: ", FBManager.shared.juryName)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        createAuthAlert()
+       
     }
 
     func updateHeaderInformation() {
@@ -38,25 +37,25 @@ class ViewController: UIViewController, updateHeaderInformationWithRC {
         ageLeagueDescriptiveImage.image = UIImage(named: Constants().getNewImageContentsForAge(forKey: Constants.ValueKey(rawValue: Constants.ValueKey.age.rawValue)!))
     }
     
-    func createAuthAlert() {
-        let alert = UIAlertController(title: "Authentification", message: "Please enter your name: ", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
-            
-            if alert.textFields?.count != nil {
-                let name = alert.textFields![0].text
-                print(name) // NAME OF JURY
-            }
-            
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        
-        alert.addTextField { (textField : UITextField) -> Void in
-            textField.placeholder = "Name"
-        }
-        
-        self.present(alert, animated: true, completion: nil)
-    }
+//    func createAuthAlert() {
+//        let alert = UIAlertController(title: "Authentification", message: "Please enter your name: ", preferredStyle: .alert)
+//
+//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+//
+//            if alert.textFields?.count != nil {
+//                let name = alert.textFields![0].text
+//                print(name) // NAME OF JURY
+//            }
+//
+//            alert.dismiss(animated: true, completion: nil)
+//        }))
+//
+//        alert.addTextField { (textField : UITextField) -> Void in
+//            textField.placeholder = "Name"
+//        }
+//
+//        self.present(alert, animated: true, completion: nil)
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToEstimationView" {

@@ -17,15 +17,38 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBAction func actionButtonForJury(_ sender: Any) {
+    @IBAction func actionButtonForJury(_ sender: Any)
+    {
+        if juryNameTextField.text != "" {
+            Auth.auth().signInAnonymously(completion: {(user, error) in
+                if user != nil
+                {
+                    print("You've successfully logged in")
+                    FBManager.shared.juryName = self.juryNameTextField.text!
+                    let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                    let ViewController: UIViewController = storyboard.instantiateViewController(withIdentifier: "JuryVC") as UIViewController
+                    self.present(ViewController, animated: true, completion: nil)
+                }
+                else
+                {
+                    if let localError = error?.localizedDescription {
+                        print(localError)
+                    } else { print ("Undefined error") }
+                }
+            })
+        }
     }
     
-    @IBAction func actionButtonForAdmin(_ sender: Any) {
+    @IBAction func actionButtonForAdmin(_ sender: Any)
+    {
         if loginTextField.text != "" && passwordTextField.text != "" {
             Auth.auth().signIn(withEmail: loginTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
                 if user != nil
                 {
                     print("You've successfully logged in")
+                    let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                    let adminViewController: UIViewController = storyboard.instantiateViewController(withIdentifier: "AdminViewController") as UIViewController
+                    self.present(adminViewController, animated: true, completion: nil)
                 }
                 else
                 {

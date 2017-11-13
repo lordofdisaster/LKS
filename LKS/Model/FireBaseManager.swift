@@ -9,9 +9,13 @@
 import Foundation
 import FirebaseDatabase
 
-class FBManager {
+final class FBManager {
     
     var ref: DatabaseReference = Database.database().reference()
+    private init() { }
+    static let shared = FBManager()
+    var juryName = String()
+    
     
     //FIXME:- complete the method
     
