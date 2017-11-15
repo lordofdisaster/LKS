@@ -20,10 +20,13 @@ class ranksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "crewCell", for: indexPath) as! CrewRankCellTableViewCell
-        cell.configureCell(labelWidth: categoryLabel.frame.width)
+        // FIXME: - crews array
+        cell.configureCell(labelWidth: categoryLabel.frame.width, crews: ["TEST"])
         return cell
         
     }
+    
+
     
     
     override func viewDidAppear(_ animated: Bool) {

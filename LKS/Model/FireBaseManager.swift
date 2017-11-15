@@ -11,9 +11,10 @@ import FirebaseDatabase
 
 final class FBManager {
     
-    var ref: DatabaseReference = Database.database().reference()
-    private init() { }
     static let shared = FBManager()
+    private init() { }
+
+    var ref: DatabaseReference = Database.database().reference()
     var juryName = String()
     
     
@@ -30,9 +31,19 @@ final class FBManager {
                                                        "total": crew.score.total])
     }
     
-    func getCrewsArrayFromCategory() -> [Crew]
+    func getAllCrews(result: @escaping (NSDictionary) -> Void)
     {
+        ref.child("CREW").observeSingleEvent(of: .value, with: { (snapshot) in
 
-        return []
+            if snapshot.exists() {
+                let crewsContents = snapshot.value as! NSDictionary
+                let arrayOfAllCrewsNames: [String] = crewsContents.allKeys as! [String]
+                result(crewsContents)
+            }
+//                    print("----------------")
+//                    print("NAME: ", crewName, "nomination: ", nomination, "ageCategory: ", ageCategory, "league: ", league, "charachter: ", charachter,"message: ", message,"perfomance: ", perfomance,"technique: ", technique, "total: ", total)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
 }

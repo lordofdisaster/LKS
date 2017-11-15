@@ -20,6 +20,9 @@ class ViewController: UIViewController, updateHeaderInformationWithRC {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Name of current Jury is: ", FBManager.shared.juryName)
+        _ = FBManager.shared.getAllCrews { result in
+            CrewRankCellTableViewCell().parseFetchedDataFromDB(crewsContents: result)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

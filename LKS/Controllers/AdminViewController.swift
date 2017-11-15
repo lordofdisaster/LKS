@@ -31,7 +31,7 @@ class AdminViewController: UIViewController {
             print(crew.ageCategory, crew.league, crew.name, crew.nomination, crew.score)
             FBManager.shared.putCrewToDataBase(crew: crew)
         }
-        
+        self.crewNameTextField.text = ""
     }
     
     
