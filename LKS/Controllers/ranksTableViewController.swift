@@ -10,20 +10,24 @@ import UIKit
 
 class ranksTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+
     @IBOutlet weak var categoryLabel: UILabel!
     
-    let category = ["CREW NAME","TECHNIQUE", "CHARACHTER", "PERFOMANCE", "MESSAGE", "TOTAL SCORE"]
+    fileprivate let category = ["CREW NAME","TECHNIQUE", "CHARACHTER", "PERFOMANCE", "MESSAGE", "TOTAL SCORE"]
+    
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "crewCell", for: indexPath) as! CrewRankCellTableViewCell
-        // FIXME: - crews array
-        cell.configureCell(labelWidth: categoryLabel.frame.width, crews: ["TEST"])
+        FBManager.shared.getAllCrews { [unowned self] (crewContents, namesCrew) in
+            let test = self.parseFetchedDataFromDB(crewsContents: crewContents, crewName: namesCrew[indexPath.row])
+            cell.configureCell(labelWidth: self.categoryLabel.frame.width, crews: test)
+        }
         return cell
-        
     }
     
 
@@ -32,11 +36,11 @@ class ranksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
           showHeader()
-        
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
     }
 
     /*
@@ -49,6 +53,29 @@ class ranksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     */
 
+    func parseFetchedDataFromDB(crewsContents: NSDictionary, crewName: String) -> [String] {
+        
+        var contentsForCell = [String]()
+
+        print("crewsContents: ", crewsContents)
+            let crewData = crewsContents.value(forKey: crewName) as! NSDictionary
+            let crewScore = crewData.value(forKey: "score") as! NSDictionary
+            print("SCORE: ", crewScore)
+            
+            let nomination = String(describing:crewData.value(forKey: "nomination"))
+            let ageCategory = String(describing:crewData.value(forKey: "ageCategory"))
+            let league = String(describing:crewData.value(forKey: "league"))
+            
+            let charachter = String(describing: crewScore.value(forKey: "charachter"))
+            let message = String(describing: crewScore.value(forKey: "message"))
+            let perfomance = String(describing: crewScore.value(forKey: "perfomance"))
+            let technique = String(describing: crewScore.value(forKey: "technique"))
+            let total = String(describing: crewScore.value(forKey: "total"))
+            contentsForCell = [crewName, technique, charachter, perfomance, message, total]
+        
+            return contentsForCell
+    }
+    
     func showHeader() {
         let labelWidth = categoryLabel.frame.width / CGFloat(category.count)
         for index in 0..<category.count {

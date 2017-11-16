@@ -31,19 +31,18 @@ final class FBManager {
                                                        "total": crew.score.total])
     }
     
-    func getAllCrews(result: @escaping (NSDictionary) -> Void)
+    func getAllCrews(result: @escaping (NSDictionary, [String]) -> Void)
     {
         ref.child("CREW").observeSingleEvent(of: .value, with: { (snapshot) in
 
             if snapshot.exists() {
                 let crewsContents = snapshot.value as! NSDictionary
                 let arrayOfAllCrewsNames: [String] = crewsContents.allKeys as! [String]
-                result(crewsContents)
+                result(crewsContents, arrayOfAllCrewsNames)
             }
-//                    print("----------------")
-//                    print("NAME: ", crewName, "nomination: ", nomination, "ageCategory: ", ageCategory, "league: ", league, "charachter: ", charachter,"message: ", message,"perfomance: ", perfomance,"technique: ", technique, "total: ", total)
         }) { (error) in
             print(error.localizedDescription)
         }
     }
+    
 }

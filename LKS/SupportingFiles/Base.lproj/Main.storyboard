@@ -240,7 +240,7 @@
                                     <constraint firstAttribute="width" secondItem="wQb-Fr-moQ" secondAttribute="height" multiplier="49:29" id="zks-KY-on2"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="7Mp-fl-tFi" kind="embed" id="yE4-Ip-9mg"/>
+                                    <segue destination="7Mp-fl-tFi" kind="embed" identifier="crewTable" id="yE4-Ip-9mg"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hr-Ob-Ybo">

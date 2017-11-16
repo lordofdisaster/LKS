@@ -20,7 +20,6 @@ class CrewRankCellTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-     
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -29,31 +28,6 @@ class CrewRankCellTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func parseFetchedDataFromDB(crewsContents: NSDictionary) {
-        
-        let arrayOfAllCrewsNames: [String] = crewsContents.allKeys as! [String]
-        for crew in arrayOfAllCrewsNames {
-
-            let crewName = String(crew)
-            print("++++++++++++++++++++++++++++", crewsContents)
-//            let crewContents = value.value(forKey: crewName) as! NSDictionary
-            let crewData = crewsContents.value(forKey: crewName) as! NSDictionary
-            let crewScore = crewData.value(forKey: "score") as! NSDictionary
-            print("SCORE_SCORE_SCORE_SCORE: ", crewScore)
-
-            let nomination = String(describing:crewData.value(forKey: "nomination"))
-            let ageCategory = String(describing:crewData.value(forKey: "ageCategory"))
-            let league = String(describing:crewData.value(forKey: "league"))
-
-            let charachter = String(describing: crewScore.value(forKey: "charachter"))
-            let message = String(describing: crewScore.value(forKey: "message"))
-            let perfomance = String(describing: crewScore.value(forKey: "perfomance"))
-            let technique = String(describing: crewScore.value(forKey: "technique"))
-            let total = String(describing: crewScore.value(forKey: "total"))
-
-            print("performance:", perfomance, "ageCategory:", ageCategory)
-        }
-    }
     
     
     func configureCell(labelWidth: CGFloat, crews: [String]) {
