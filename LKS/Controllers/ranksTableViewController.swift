@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ranksTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ranksTableViewController: UITableViewController {
     
 
     @IBOutlet weak var categoryLabel: UILabel!
@@ -18,11 +18,11 @@ class ranksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     var numberOfRowsInTableView = 0
 
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return numberOfRowsInTableView
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "crewCell", for: indexPath) as! CrewRankCellTableViewCell
         FBManager.shared.getAllCrews { [unowned self] (crewContents, namesCrew) in
             let test = self.parseFetchedDataFromDB(crewsContents: crewContents, crewName: namesCrew[indexPath.row])
@@ -41,12 +41,13 @@ class ranksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        reloadDataWithNewValues()
     }
     
     func reloadDataWithNewValues() {
         FBManager.shared.getAllCrews { [unowned self] (crewContents, namesCrew) in
             self.numberOfRowsInTableView = namesCrew.count
+            self.tableView.reloadData()
         }
     }
 
