@@ -8,17 +8,18 @@
 
 import UIKit
 
+
 class ranksTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
 
     @IBOutlet weak var categoryLabel: UILabel!
     
     fileprivate let category = ["CREW NAME","TECHNIQUE", "CHARACHTER", "PERFOMANCE", "MESSAGE", "TOTAL SCORE"]
-    
+    var numberOfRowsInTableView = 0
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return numberOfRowsInTableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -40,18 +41,14 @@ class ranksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
     
+    func reloadDataWithNewValues() {
+        FBManager.shared.getAllCrews { [unowned self] (crewContents, namesCrew) in
+            self.numberOfRowsInTableView = namesCrew.count
+        }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     func parseFetchedDataFromDB(crewsContents: NSDictionary, crewName: String) -> [String] {
         
@@ -62,15 +59,15 @@ class ranksTableViewController: UIViewController, UITableViewDelegate, UITableVi
             let crewScore = crewData.value(forKey: "score") as! NSDictionary
             print("SCORE: ", crewScore)
             
-            let nomination = String(describing:crewData.value(forKey: "nomination"))
-            let ageCategory = String(describing:crewData.value(forKey: "ageCategory"))
-            let league = String(describing:crewData.value(forKey: "league"))
+            let nomination = String(describing:crewData.value(forKey: "nomination")!)
+            let ageCategory = String(describing:crewData.value(forKey: "ageCategory")!)
+            let league = String(describing:crewData.value(forKey: "league")!)
             
-            let charachter = String(describing: crewScore.value(forKey: "charachter"))
-            let message = String(describing: crewScore.value(forKey: "message"))
-            let perfomance = String(describing: crewScore.value(forKey: "perfomance"))
-            let technique = String(describing: crewScore.value(forKey: "technique"))
-            let total = String(describing: crewScore.value(forKey: "total"))
+            let charachter = String(describing: crewScore.value(forKey: "charachter")!)
+            let message = String(describing: crewScore.value(forKey: "message")!)
+            let perfomance = String(describing: crewScore.value(forKey: "perfomance")!)
+            let technique = String(describing: crewScore.value(forKey: "technique")!)
+            let total = String(describing: crewScore.value(forKey: "total")!)
             contentsForCell = [crewName, technique, charachter, perfomance, message, total]
         
             return contentsForCell
