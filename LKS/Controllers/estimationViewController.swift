@@ -17,12 +17,18 @@ class estimationViewController: UIViewController, UIPickerViewDataSource, UIPick
     
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var gradePicker: UIPickerView!
+    @IBOutlet weak var commentTextField: UITextField!
     @IBAction func confirmationButton(_ sender: Any) {
-        delegate?.updateHeaderInformation()
+        //delegate?.updateHeaderInformation()
+        print(juryRatesAndCommet)
+        print(countTotalScoreForCrew(values: juryRatesAndCommet))
+
     }
     
-    let category = Estimation().category
-    let grades = Estimation().grades
+    fileprivate let category = Estimation().category
+    fileprivate let grades = Estimation().grades
+    fileprivate var juryRatesAndCommet = Estimation().juryRatesAndCommet
+    
     weak var delegate: updateHeaderInformationWithRC?
     
 
@@ -37,10 +43,23 @@ class estimationViewController: UIViewController, UIPickerViewDataSource, UIPick
         }
     }
     
+    func countTotalScoreForCrew(values: [String:String]) -> String {
+
+        let contertible = values as NSDictionary
+        guard let iv1: Int = Int(contertible.value(forKey: "TECHNIQUE") as! String ) else { return "" }
+        guard let iv2: Int = Int(contertible.value(forKey: "CHARACTER") as! String) else { return "" }
+        guard let iv3: Int = Int(contertible.value(forKey: "PERFOMANCE") as! String) else { return "" }
+        guard let iv4: Int = Int(contertible.value(forKey: "MESSAGE") as! String) else { return "" }
+    
+        let result: Int = iv1 + iv2 + iv3 + iv4
+        return String(result)
+    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         showCathegory()
+        
     }
     
     
@@ -63,6 +82,13 @@ extension estimationViewController {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return grades[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        juryRatesAndCommet.updateValue(grades[gradePicker.selectedRow(inComponent: 0)], forKey: "TECHNIQUE")
+        juryRatesAndCommet.updateValue(grades[gradePicker.selectedRow(inComponent: 1)], forKey: "CHARACTER")
+        juryRatesAndCommet.updateValue(grades[gradePicker.selectedRow(inComponent: 2)], forKey: "PERFOMANCE")
+        juryRatesAndCommet.updateValue(grades[gradePicker.selectedRow(inComponent: 3)], forKey: "MESSAGE")
     }
 }
 

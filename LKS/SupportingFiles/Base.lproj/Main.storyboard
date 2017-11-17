@@ -460,6 +460,7 @@
                     </view>
                     <connections>
                         <outlet property="categoryLabel" destination="lfx-Jr-h3b" id="md6-G2-GG2"/>
+                        <outlet property="commentTextField" destination="Up0-LE-rXl" id="yFU-ra-sVq"/>
                         <outlet property="gradePicker" destination="62n-xb-FFG" id="SdC-3I-F3f"/>
                     </connections>
                 </viewController>
