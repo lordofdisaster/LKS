@@ -16,6 +16,11 @@ class ranksTableViewController: UITableViewController {
     
     fileprivate let category = ["CREW NAME","TECHNIQUE", "CHARACHTER", "PERFOMANCE", "MESSAGE", "TOTAL SCORE"]
     var numberOfRowsInTableView = 0
+    var crewsWithRates = [[String]]() {
+        didSet{
+            print("SET")
+        }
+    }
 
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -24,10 +29,12 @@ class ranksTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "crewCell", for: indexPath) as! CrewRankCellTableViewCell
-        FBManager.shared.getAllCrews { [unowned self] (crewContents, namesCrew) in
-            let test = self.parseFetchedDataFromDB(crewsContents: crewContents, crewName: namesCrew[indexPath.row])
-            cell.configureCell(labelWidth: self.categoryLabel.frame.width, crews: test)
-        }
+        cell.configureCell(labelWidth: self.categoryLabel.frame.width, crews: crewsWithRates[indexPath.row])
+        
+//        FBManager.shared.getAllCrews { [unowned self] (crewContents, namesCrew) in
+//            let test = self.parseFetchedDataFromDB(crewsContents: crewContents, crewName: namesCrew[indexPath.row])
+//            cell.configureCell(labelWidth: self.categoryLabel.frame.width, crews: test)
+//        }
         return cell
     }
     
@@ -47,6 +54,11 @@ class ranksTableViewController: UITableViewController {
     func reloadDataWithNewValues() {
         FBManager.shared.getAllCrews { [unowned self] (crewContents, namesCrew) in
             self.numberOfRowsInTableView = namesCrew.count
+            
+            for crew in namesCrew {
+               self.crewsWithRates.append(self.parseFetchedDataFromDB(crewsContents: crewContents, crewName: crew))
+            }
+            print("!!!crewsWithRates!!!",self.crewsWithRates)
             self.tableView.reloadData()
         }
     }

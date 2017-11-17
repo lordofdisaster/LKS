@@ -29,7 +29,6 @@ class CrewRankCellTableViewCell: UITableViewCell {
     }
     
     
-    
     func configureCell(labelWidth: CGFloat, crews: [String]) {
         
         let labelWidth = labelWidth / CGFloat(crews.count)
