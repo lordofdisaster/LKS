@@ -10,13 +10,13 @@ import UIKit
 
 class CrewRankCellTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var crewNameLabel: UILabel!
+    @IBOutlet weak var techniqueLable: UILabel!
+    @IBOutlet weak var charachterLabel: UILabel!
+    @IBOutlet weak var perfomanceLabel: UILabel!
+    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var totalScore: UILabel!
 
-
-    @IBOutlet weak var crewInfo: UILabel!
-    
-   
-  //  let array = FBManager().getCrewsArrayFromCategory()
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,17 +29,13 @@ class CrewRankCellTableViewCell: UITableViewCell {
     }
     
     
-    func configureCell(labelWidth: CGFloat, crews: [String]) {
-        
-        let labelWidth = labelWidth / CGFloat(crews.count)
-        for index in 0..<crews.count {
-            let rect = CGRect(x: self.crewInfo.frame.origin.x + labelWidth * CGFloat(index), y: 0, width: labelWidth, height: 20)
-            let label = UILabel.init(frame: rect)
-            label.text = crews[index]
-            label.textAlignment = .center
-            label.adjustsFontSizeToFitWidth = true
-            self.crewInfo.addSubview(label)
-        }
+    func configureCell(crews: NSDictionary) {
+        self.crewNameLabel.text = (crews.value(forKey: "crewName") as! String)
+        self.techniqueLable.text = (crews.value(forKey: "technique") as! String)
+        self.charachterLabel.text = (crews.value(forKey: "charachter") as! String)
+        self.perfomanceLabel.text = (crews.value(forKey: "perfomance") as! String)
+        self.messageLabel.text = (crews.value(forKey: "message") as! String)
+        self.totalScore.text = (crews.value(forKey: "total") as! String)
     }
     
 

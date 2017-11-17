@@ -16,11 +16,7 @@ class ranksTableViewController: UITableViewController {
     
     fileprivate let category = ["CREW NAME","TECHNIQUE", "CHARACHTER", "PERFOMANCE", "MESSAGE", "TOTAL SCORE"]
     var numberOfRowsInTableView = 0
-    var crewsWithRates = [[String]]() {
-        didSet{
-            print("SET")
-        }
-    }
+    var crewsWithRates = [NSDictionary]()
 
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -29,11 +25,11 @@ class ranksTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "crewCell", for: indexPath) as! CrewRankCellTableViewCell
-        cell.configureCell(labelWidth: self.categoryLabel.frame.width, crews: crewsWithRates[indexPath.row])
+        cell.configureCell(crews: crewsWithRates[indexPath.row])
         
 //        FBManager.shared.getAllCrews { [unowned self] (crewContents, namesCrew) in
 //            let test = self.parseFetchedDataFromDB(crewsContents: crewContents, crewName: namesCrew[indexPath.row])
-//            cell.configureCell(labelWidth: self.categoryLabel.frame.width, crews: test)
+//            cell.configureCell(crews: test)
 //        }
         return cell
     }
@@ -43,12 +39,13 @@ class ranksTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-          showHeader()
+      //    showHeader()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         reloadDataWithNewValues()
+       
     }
     
     func reloadDataWithNewValues() {
@@ -56,21 +53,21 @@ class ranksTableViewController: UITableViewController {
             self.numberOfRowsInTableView = namesCrew.count
             
             for crew in namesCrew {
-               self.crewsWithRates.append(self.parseFetchedDataFromDB(crewsContents: crewContents, crewName: crew))
+                self.crewsWithRates.append(self.parseFetchedDataFromDB(crewsContents: crewContents, crewName: crew))
             }
-            print("!!!crewsWithRates!!!",self.crewsWithRates)
             self.tableView.reloadData()
         }
     }
 
-    func parseFetchedDataFromDB(crewsContents: NSDictionary, crewName: String) -> [String] {
+    func parseFetchedDataFromDB(crewsContents: NSDictionary, crewName: String) -> NSDictionary {
         
-        var contentsForCell = [String]()
+        var contentsForCell = NSDictionary()
 
-        print("crewsContents: ", crewsContents)
+        
             let crewData = crewsContents.value(forKey: crewName) as! NSDictionary
             let crewScore = crewData.value(forKey: "score") as! NSDictionary
             print("SCORE: ", crewScore)
+            print("CrewData",crewData)
             
             let nomination = String(describing:crewData.value(forKey: "nomination")!)
             let ageCategory = String(describing:crewData.value(forKey: "ageCategory")!)
@@ -81,20 +78,17 @@ class ranksTableViewController: UITableViewController {
             let perfomance = String(describing: crewScore.value(forKey: "perfomance")!)
             let technique = String(describing: crewScore.value(forKey: "technique")!)
             let total = String(describing: crewScore.value(forKey: "total")!)
-            contentsForCell = [crewName, technique, charachter, perfomance, message, total]
+        
+        contentsForCell = ["crewName" : crewName,
+                           "technique" : technique,
+                           "charachter" : charachter,
+                           "perfomance" : perfomance,
+                           "message" : message,
+                           "total" : total,
+                           "nomination" : nomination,
+                           "ageCategory" : ageCategory,
+                           "league" : league]
         
             return contentsForCell
     }
-    
-    func showHeader() {
-        let labelWidth = categoryLabel.frame.width / CGFloat(category.count)
-        for index in 0..<category.count {
-            let rect = CGRect(x: categoryLabel.frame.origin.x + labelWidth * CGFloat(index), y: 0, width: labelWidth, height: 20)
-            let label = UILabel.init(frame: rect)
-            label.text = category[index]
-            label.textAlignment = .center
-            categoryLabel.addSubview(label)
-        }
-    }
-    
 }
