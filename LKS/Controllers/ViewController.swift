@@ -21,6 +21,12 @@ class ViewController: UIViewController, updateHeaderInformationWithRC {
         super.viewDidLoad()
         print("Name of current Jury is: ", FBManager.shared.juryName)
         
+        nominationDescriptiveImage.image = UIImage(named: "BEST CLASSIC")
+        
+        leagueDescriptiveImage.image = UIImage(named: "PRO LEAGUE")
+        
+        ageLeagueDescriptiveImage.image = UIImage(named: "JUNIORS")
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
