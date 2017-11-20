@@ -240,7 +240,7 @@
                                     <constraint firstAttribute="width" constant="375" id="krV-41-wcf"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="LxB-QL-3yb" kind="embed" id="jdE-SS-6Y6"/>
+                                    <segue destination="LxB-QL-3yb" kind="embed" identifier="ranksSegue" id="jdE-SS-6Y6"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hr-Ob-Ybo">
@@ -276,7 +276,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="LYW-23-9ct" secondAttribute="height" multiplier="375:31" id="Lqf-Tq-MdZ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" cocoaTouchSystemColor="lightTextColor"/>
@@ -388,7 +388,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="ageLeagueDescriptiveImage" destination="5mM-N7-lcW" id="HpO-9p-w0C"/>
+                        <outlet property="ageCategoryDescriptiveImage" destination="5mM-N7-lcW" id="HpO-9p-w0C"/>
                         <outlet property="currentCrewName" destination="LYW-23-9ct" id="2Ra-jj-B7k"/>
                         <outlet property="leagueDescriptiveImage" destination="pzB-bm-w3H" id="p2N-Lm-Top"/>
                         <outlet property="nominationDescriptiveImage" destination="s1D-Kh-QEk" id="sN4-bk-XzN"/>
@@ -427,7 +427,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="lfx-Jr-h3b" secondAttribute="height" multiplier="311:21" id="YwK-Ts-E7U"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
