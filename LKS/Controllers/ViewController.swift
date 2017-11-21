@@ -61,20 +61,13 @@ class ViewController: UIViewController, updateHeaderInformationWithRC, updateHea
         self.nominationImageToView.image = UIImage(named: _nomination)
         UIView.transition(from: fromViewNomination!, to: nominationImageToView, duration: 0.5, options: [.curveEaseOut, .transitionFlipFromLeft, .showHideTransitionViews])
         
-//        let fromViewNomination = nominationImageFromView
-//        self.nominationImageToView.image = UIImage(named: _nomination)
-//        UIView.transition(from: fromViewNomination!, to: nominationImageToView, duration: 0.5, options: [.curveEaseOut, .transitionFlipFromLeft, .showHideTransitionViews])
-//        
-//        let fromViewNomination = nominationImageFromView
-//        self.nominationImageToView.image = UIImage(named: _nomination)
-//        UIView.transition(from: fromViewNomination!, to: nominationImageToView, duration: 0.5, options: [.curveEaseOut, .transitionFlipFromLeft, .showHideTransitionViews])
-        
-        
-        
-        ///////////
-//        nominationDescriptiveImage.image = UIImage(named: _nomination)
-//        leagueDescriptiveImage.image = UIImage(named: _league)
-//        ageCategoryDescriptiveImage.image = UIImage(named: _ageCategory)
+        let fromLeagueNomination = leagueImageFromView
+        self.leagueImageToView.image = UIImage(named: _league)
+        UIView.transition(from: fromLeagueNomination!, to: leagueImageToView, duration: 0.5, options: [.curveEaseOut, .transitionFlipFromLeft, .showHideTransitionViews])
+
+        let fromAgeCategoryNomination = ageCategoryImgageFromView
+        self.ageCategoryImageToView.image = UIImage(named: _ageCategory)
+        UIView.transition(from: fromAgeCategoryNomination!, to: ageCategoryImageToView, duration: 0.5, options: [.curveEaseOut, .transitionFlipFromLeft, .showHideTransitionViews])
     }
 
     
