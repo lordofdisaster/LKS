@@ -19,8 +19,10 @@ class ranksTableViewController: UITableViewController, updateRanksTable {
     fileprivate let category = ["CREW NAME","TECHNIQUE", "CHARACHTER", "PERFOMANCE", "MESSAGE", "TOTAL SCORE"]
     fileprivate var numberOfRowsInTableView = 0
     fileprivate var crewsWithRates = [NSDictionary]()
-    fileprivate var currentCell = CrewRankCellTableViewCell()
-    fileprivate var indexPath = IndexPath()
+    fileprivate var currentCell = CrewRankCellTableViewCell() 
+    fileprivate var indexPathforCellToUpdate = IndexPath()
+  
+
     
     weak var delegateHeaderUpdater: updateHeaderInformationWithCellContents?
     
@@ -35,13 +37,7 @@ class ranksTableViewController: UITableViewController, updateRanksTable {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-//        let indexPath = IndexPath(item: rowNumber, section: 0)
-//        tableView.reloadRows(at: [indexPath], with: .top)
-        
-        let indexPath = tableView.indexPathForSelectedRow;
-        currentCell = tableView.cellForRow(at: indexPath!) as! CrewRankCellTableViewCell!;
-        
+        self.currentCell = tableView.cellForRow(at: indexPath) as! CrewRankCellTableViewCell!
         delegateHeaderUpdater?.updateHeaderInformationFromSelectedCell(_nomination: currentCell.nomination, _ageCategory: currentCell.ageCategory, _league: currentCell.league, _currentCrew: currentCell.crewNameLabel.text!)
         
 }
@@ -102,15 +98,10 @@ class ranksTableViewController: UITableViewController, updateRanksTable {
     }
     
     func updateTableWithNewValues(_values: [String:String], _totalScore: String) {
+        
         let values = _values as NSDictionary
         let score = _totalScore
-      //  self.tableView.rectForRow(at: <#T##IndexPath#>)
-        currentCell.updateRatesForCrewInCell(values: values, _totalScore: score)
-//        currentCell.messageLabel.text = (values.value(forKey: "MESSAGE") as! String)
-//        currentCell.charachterLabel.text = (values.value(forKey: "CHARACTER") as! String)
-//        currentCell.perfomanceLabel.text = (values.value(forKey: "PERFOMANCE") as! String)
-//        currentCell.techniqueLable.text = (values.value(forKey: "TECHNIQUE") as! String)
-//        currentCell.totalScore.text = _totalScore
+        self.tableView.reloadRows(at: [indexPathforCellToUpdate], with: UITableViewRowAnimation.bottom)
     }
     
 }

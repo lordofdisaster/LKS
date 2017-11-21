@@ -11,23 +11,29 @@ import Firebase
 
 class ViewController: UIViewController, updateHeaderInformationWithRC, updateHeaderInformationWithCellContents {
 
-    @IBOutlet weak var nominationDescriptiveImage: UIImageView!
-    @IBOutlet weak var leagueDescriptiveImage: UIImageView!
-    @IBOutlet weak var ageCategoryDescriptiveImage: UIImageView!
+    @IBOutlet weak var nominationImageFromView: UIImageView!
+    @IBOutlet weak var nominationImageToView: UIImageView!
+    
+    @IBOutlet weak var leagueImageFromView: UIImageView!
+    @IBOutlet weak var leagueImageToView: UIImageView!
+    
+    @IBOutlet weak var ageCategoryImgageFromView: UIImageView!
+    @IBOutlet weak var ageCategoryImageToView: UIImageView!
+    
     @IBOutlet weak var currentCrewName: UILabel!
     
-    var ranksVC = ranksTableViewController()
-    var estimationVC = estimationViewController()
+    fileprivate var ranksVC = ranksTableViewController()
+    fileprivate var estimationVC = estimationViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Name of current Jury is: ", FBManager.shared.juryName)
         
-        nominationDescriptiveImage.image = UIImage(named: "WAM_logo")
+        nominationImageFromView.image = UIImage(named: "WAM_logo")
         
-        leagueDescriptiveImage.image = UIImage(named: "WAM_logo")
+        leagueImageFromView.image = UIImage(named: "WAM_logo")
         
-        ageCategoryDescriptiveImage.image = UIImage(named: "WAM_logo")
+        ageCategoryImgageFromView.image = UIImage(named: "WAM_logo")
 
     }
     
@@ -40,20 +46,35 @@ class ViewController: UIViewController, updateHeaderInformationWithRC, updateHea
     func updateHeaderInformationFromRemouteConfig() {
         Constants().setupAPP()
         
-        nominationDescriptiveImage.image = UIImage(named: Constants().getNewImageContentsForNomination(forKey: Constants.ValueKey(rawValue: Constants.ValueKey.nomination.rawValue)!))
+        nominationImageFromView.image = UIImage(named: Constants().getNewImageContentsForNomination(forKey: Constants.ValueKey(rawValue: Constants.ValueKey.nomination.rawValue)!))
         
-        leagueDescriptiveImage.image = UIImage(named: Constants().getNewImageContentsForLeague(forKey: Constants.ValueKey(rawValue: Constants.ValueKey.league.rawValue)!))
+        leagueImageFromView.image = UIImage(named: Constants().getNewImageContentsForLeague(forKey: Constants.ValueKey(rawValue: Constants.ValueKey.league.rawValue)!))
         
-        ageCategoryDescriptiveImage.image = UIImage(named: Constants().getNewImageContentsForAge(forKey: Constants.ValueKey(rawValue: Constants.ValueKey.age.rawValue)!))
+        ageCategoryImgageFromView.image = UIImage(named: Constants().getNewImageContentsForAge(forKey: Constants.ValueKey(rawValue: Constants.ValueKey.age.rawValue)!))
     }
     
     func updateHeaderInformationFromSelectedCell(_nomination: String, _ageCategory: String, _league: String, _currentCrew: String) {
         self.currentCrewName.text = _currentCrew
         print("nomination: ", _nomination, "_ageCategory: ", _ageCategory, "_league: ", _league)
         
-        nominationDescriptiveImage.image = UIImage(named: _nomination)
-        leagueDescriptiveImage.image = UIImage(named: _league)
-        ageCategoryDescriptiveImage.image = UIImage(named: _ageCategory)
+        let fromViewNomination = nominationImageFromView
+        self.nominationImageToView.image = UIImage(named: _nomination)
+        UIView.transition(from: fromViewNomination!, to: nominationImageToView, duration: 0.5, options: [.curveEaseOut, .transitionFlipFromLeft, .showHideTransitionViews])
+        
+//        let fromViewNomination = nominationImageFromView
+//        self.nominationImageToView.image = UIImage(named: _nomination)
+//        UIView.transition(from: fromViewNomination!, to: nominationImageToView, duration: 0.5, options: [.curveEaseOut, .transitionFlipFromLeft, .showHideTransitionViews])
+//        
+//        let fromViewNomination = nominationImageFromView
+//        self.nominationImageToView.image = UIImage(named: _nomination)
+//        UIView.transition(from: fromViewNomination!, to: nominationImageToView, duration: 0.5, options: [.curveEaseOut, .transitionFlipFromLeft, .showHideTransitionViews])
+        
+        
+        
+        ///////////
+//        nominationDescriptiveImage.image = UIImage(named: _nomination)
+//        leagueDescriptiveImage.image = UIImage(named: _league)
+//        ageCategoryDescriptiveImage.image = UIImage(named: _ageCategory)
     }
 
     
@@ -71,6 +92,10 @@ class ViewController: UIViewController, updateHeaderInformationWithRC, updateHea
                 
             }
         }
+    }
+    
+    func flipOver() {
+        
     }
     
 }

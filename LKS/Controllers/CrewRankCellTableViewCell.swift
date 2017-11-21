@@ -52,6 +52,7 @@ class CrewRankCellTableViewCell: UITableViewCell {
         self.techniqueLable.text = (values.value(forKey: "TECHNIQUE") as! String)
         self.totalScore.text = _totalScore
     }
+
     
 
 }
