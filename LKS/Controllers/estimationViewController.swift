@@ -22,7 +22,6 @@ class estimationViewController: UIViewController, UIPickerViewDataSource, UIPick
     @IBOutlet weak var gradePicker: UIPickerView!
     @IBOutlet weak var commentTextField: UITextField!
     @IBAction func confirmationButton(_ sender: Any) {
-        //delegateHeaderUpdater?.updateHeaderInformation()
         print(juryRatesAndComment)
         print(countTotalScoreForCrew(values: juryRatesAndComment))
         

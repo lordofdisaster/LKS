@@ -82,7 +82,7 @@ class ViewController: UIViewController, updateHeaderInformationWithRC, updateHea
         if segue.identifier == "ranksSegue" {
             if let vc = segue.destination as? ranksTableViewController {
                 vc.delegateHeaderUpdater = self
-                
+                ranksVC = vc
             }
         }
     }

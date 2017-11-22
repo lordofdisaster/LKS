@@ -19,8 +19,7 @@ class ranksTableViewController: UITableViewController, updateRanksTable {
     fileprivate let category = ["CREW NAME","TECHNIQUE", "CHARACHTER", "PERFOMANCE", "MESSAGE", "TOTAL SCORE"]
     fileprivate var numberOfRowsInTableView = 0
     fileprivate var crewsWithRates = [NSDictionary]()
-    fileprivate var currentCell = CrewRankCellTableViewCell() 
-    fileprivate var indexPathforCellToUpdate = IndexPath()
+    fileprivate var indexPathforCellToUpdate: IndexPath!
   
 
     
@@ -37,8 +36,9 @@ class ranksTableViewController: UITableViewController, updateRanksTable {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.currentCell = tableView.cellForRow(at: indexPath) as! CrewRankCellTableViewCell!
-        delegateHeaderUpdater?.updateHeaderInformationFromSelectedCell(_nomination: currentCell.nomination, _ageCategory: currentCell.ageCategory, _league: currentCell.league, _currentCrew: currentCell.crewNameLabel.text!)
+        let currentCell = tableView.cellForRow(at: indexPath) as! CrewRankCellTableViewCell!
+        indexPathforCellToUpdate = indexPath
+        delegateHeaderUpdater?.updateHeaderInformationFromSelectedCell(_nomination: (currentCell?.nomination)!, _ageCategory: (currentCell?.ageCategory)!, _league: (currentCell?.league)!, _currentCrew: (currentCell?.crewNameLabel.text!)!)
         
 }
     
@@ -101,7 +101,8 @@ class ranksTableViewController: UITableViewController, updateRanksTable {
         
         let values = _values as NSDictionary
         let score = _totalScore
-        self.tableView.reloadRows(at: [indexPathforCellToUpdate], with: UITableViewRowAnimation.bottom)
+        let cell = tableView.cellForRow(at: indexPathforCellToUpdate) as! CrewRankCellTableViewCell
+        cell.updateRatesForCrewInCell(values: values, _totalScore: score)
     }
     
 }
