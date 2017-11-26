@@ -45,7 +45,7 @@ class ranksTableViewController: UITableViewController, updateRanksTable {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-      //    showHeader()
+
     }
 
     override func viewDidLoad() {
@@ -61,6 +61,28 @@ class ranksTableViewController: UITableViewController, updateRanksTable {
                 self.crewsWithRates.append(self.parseFetchedDataFromDB(crewsContents: crewContents, crewName: crew))
             }
             self.tableView.reloadData()
+            ///
+            
+//            let some = self.crewsWithRates
+//            let some2 = some.map{$0 as! [String:String]}
+//            print("Testable: ",some2)
+//            let some3 = [[String:String]]()
+//
+            for each in self.crewsWithRates {
+                if (each.value(forKey: "nomination") as! String == "Best Street Crew" && each.value(forKey: "league") as! String == "Pro League" && each.value(forKey: "ageCategory") as! String == "Adults")
+                {
+                    print("Tesable :", each)
+                    print("=========================END=======================")
+                    }
+            }
+            
+//            some2.map{$0.map{ if($0.value == "Best Classic Crew")
+//            {
+//                print("----------------: ", $0)
+//                }
+//                }}
+//            print("FFFF: ", some3)
+            ///
         }
     }
 
@@ -98,11 +120,29 @@ class ranksTableViewController: UITableViewController, updateRanksTable {
     }
     
     func updateTableWithNewValues(_values: [String:String], _totalScore: String) {
-        
         let values = _values as NSDictionary
         let score = _totalScore
-        let cell = tableView.cellForRow(at: indexPathforCellToUpdate) as! CrewRankCellTableViewCell
-        cell.updateRatesForCrewInCell(values: values, _totalScore: score)
+
+        guard indexPathforCellToUpdate != nil else {return}
+        
+        if let cell = tableView.cellForRow(at: indexPathforCellToUpdate) as? CrewRankCellTableViewCell
+        {
+            cell.updateRatesForCrewInCell(values: values, _totalScore: score)
+
+            var valueToUpdate = crewsWithRates[indexPathforCellToUpdate.row] as! [String:String]
+            valueToUpdate.updateValue(values.value(forKey: "CHARACTER") as! String, forKey: "charachter")
+            valueToUpdate.updateValue(values.value(forKey: "MESSAGE") as! String, forKey: "message")
+            valueToUpdate.updateValue(values.value(forKey: "PERFOMANCE") as! String, forKey: "perfomance")
+            valueToUpdate.updateValue(values.value(forKey: "TECHNIQUE") as! String, forKey: "technique")
+            valueToUpdate.updateValue(_totalScore, forKey: "total")
+            
+            self.crewsWithRates[indexPathforCellToUpdate.row] = valueToUpdate as NSDictionary
+
+        } else {
+            let alert = UIAlertController(title: "No selected crew", message: "Select one to estimate", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
 }

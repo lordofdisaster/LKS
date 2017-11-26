@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+
 class ViewController: UIViewController, updateHeaderInformationWithRC, updateHeaderInformationWithCellContents {
 
     @IBOutlet weak var nominationImageFromView: UIImageView!
@@ -54,6 +55,24 @@ class ViewController: UIViewController, updateHeaderInformationWithRC, updateHea
     }
     
     func updateHeaderInformationFromSelectedCell(_nomination: String, _ageCategory: String, _league: String, _currentCrew: String) {
+        
+        
+        
+        
+        
+        
+        let textAnimation = CATransition()
+        textAnimation.type = kCATransitionPush;
+        textAnimation.duration = 1.7;
+        textAnimation.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseInEaseOut)
+        
+        self.currentCrewName.layer.add(textAnimation, forKey: "changeTextTransition")
+        
+        
+        
+        
+        
+        
         self.currentCrewName.text = _currentCrew
         print("nomination: ", _nomination, "_ageCategory: ", _ageCategory, "_league: ", _league)
         
@@ -63,11 +82,11 @@ class ViewController: UIViewController, updateHeaderInformationWithRC, updateHea
         
         let fromLeagueNomination = leagueImageFromView
         self.leagueImageToView.image = UIImage(named: _league)
-        UIView.transition(from: fromLeagueNomination!, to: leagueImageToView, duration: 0.5, options: [.curveEaseOut, .transitionFlipFromLeft, .showHideTransitionViews])
+        UIView.transition(from: fromLeagueNomination!, to: leagueImageToView, duration: 1, options: [.curveEaseOut, .transitionFlipFromLeft, .showHideTransitionViews])
 
         let fromAgeCategoryNomination = ageCategoryImgageFromView
         self.ageCategoryImageToView.image = UIImage(named: _ageCategory)
-        UIView.transition(from: fromAgeCategoryNomination!, to: ageCategoryImageToView, duration: 0.5, options: [.curveEaseOut, .transitionFlipFromLeft, .showHideTransitionViews])
+        UIView.transition(from: fromAgeCategoryNomination!, to: ageCategoryImageToView, duration: 1.5, options: [.curveEaseOut, .transitionFlipFromLeft, .showHideTransitionViews])
     }
 
     
@@ -86,9 +105,5 @@ class ViewController: UIViewController, updateHeaderInformationWithRC, updateHea
             }
         }
     }
-    
-    func flipOver() {
-        
-    }
-    
+
 }

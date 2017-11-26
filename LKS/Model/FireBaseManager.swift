@@ -34,7 +34,6 @@ final class FBManager {
     func getAllCrews(result: @escaping (NSDictionary, [String]) -> Void)
     {
         ref.child("CREW").observeSingleEvent(of: .value, with: { (snapshot) in
-
             if snapshot.exists() {
                 let crewsContents = snapshot.value as! NSDictionary
                 let arrayOfAllCrewsNames: [String] = crewsContents.allKeys as! [String]

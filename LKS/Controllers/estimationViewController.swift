@@ -26,6 +26,7 @@ class estimationViewController: UIViewController, UIPickerViewDataSource, UIPick
         print(countTotalScoreForCrew(values: juryRatesAndComment))
         
         delegateTableUpdater?.updateTableWithNewValues(_values: juryRatesAndComment, _totalScore: countTotalScoreForCrew(values: juryRatesAndComment))
+        nullifyGradePicker()
     }
     
     fileprivate let category = Estimation().category
@@ -92,6 +93,13 @@ extension estimationViewController {
         juryRatesAndComment.updateValue(grades[gradePicker.selectedRow(inComponent: 1)], forKey: "CHARACTER")
         juryRatesAndComment.updateValue(grades[gradePicker.selectedRow(inComponent: 2)], forKey: "PERFOMANCE")
         juryRatesAndComment.updateValue(grades[gradePicker.selectedRow(inComponent: 3)], forKey: "MESSAGE")
+    }
+    
+    func nullifyGradePicker() {
+        for component in 0..<gradePicker.numberOfComponents {
+            self.gradePicker.selectRow(0, inComponent: component, animated: true)
+        }
+        
     }
     
 }
