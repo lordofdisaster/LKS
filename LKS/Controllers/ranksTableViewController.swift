@@ -128,7 +128,7 @@ class ranksTableViewController: UITableViewController, updateRanksTable, loadSpe
     func loadParticularCrewStack(nomination: String, league: String, ageCategory: String)
     {
         // need to specify what exactly do we need
-        reloadDataWithNewValues()
+       
         for each in crewsWithRates {
             if (each.value(forKey: "nomination") as! String == nomination && each.value(forKey: "league") as! String == league && each.value(forKey: "ageCategory") as! String == ageCategory)
             {

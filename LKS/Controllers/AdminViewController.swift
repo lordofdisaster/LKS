@@ -10,6 +10,7 @@ import UIKit
 
 protocol loadSpecifyedCrews: class {
     func loadParticularCrewStack(nomination: String, league: String, ageCategory: String)
+    func reloadDataWithNewValues()
 }
 
 class AdminViewController: UIViewController {
@@ -25,7 +26,7 @@ class AdminViewController: UIViewController {
     
     
     
-    let a = ranksTableViewController()
+    let ranksTVC = ranksTableViewController()
     
     @IBAction func createCrewButton(_ sender: Any)
     {
@@ -61,7 +62,8 @@ class AdminViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         seTitlesForSegmentedControllers()
-        self.delegateCrewsLoader = a
+        self.delegateCrewsLoader = ranksTVC
+        self.delegateCrewsLoader?.reloadDataWithNewValues()
     }
     
     func seTitlesForSegmentedControllers()
