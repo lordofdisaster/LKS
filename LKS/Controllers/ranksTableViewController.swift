@@ -12,14 +12,16 @@ protocol updateHeaderInformationWithCellContents: class {
     func updateHeaderInformationFromSelectedCell(_nomination: String, _ageCategory: String, _league: String, _currentCrew: String)
 }
 
-class ranksTableViewController: UITableViewController, updateRanksTable {
+class ranksTableViewController: UITableViewController, updateRanksTable, loadSpecifyedCrews {
   
     @IBOutlet weak var categoryLabel: UILabel!
     
     fileprivate let category = ["CREW NAME","TECHNIQUE", "CHARACHTER", "PERFOMANCE", "MESSAGE", "TOTAL SCORE"]
     fileprivate var numberOfRowsInTableView = 0
     fileprivate var crewsWithRates = [NSDictionary]()
+    fileprivate var particularCrewStack = [NSDictionary]()
     fileprivate var indexPathforCellToUpdate: IndexPath!
+    
   
 
     
@@ -50,7 +52,7 @@ class ranksTableViewController: UITableViewController, updateRanksTable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        reloadDataWithNewValues()
+    //    reloadDataWithNewValues()
     }
     
     func reloadDataWithNewValues() {
@@ -61,28 +63,6 @@ class ranksTableViewController: UITableViewController, updateRanksTable {
                 self.crewsWithRates.append(self.parseFetchedDataFromDB(crewsContents: crewContents, crewName: crew))
             }
             self.tableView.reloadData()
-            ///
-            
-//            let some = self.crewsWithRates
-//            let some2 = some.map{$0 as! [String:String]}
-//            print("Testable: ",some2)
-//            let some3 = [[String:String]]()
-//
-            for each in self.crewsWithRates {
-                if (each.value(forKey: "nomination") as! String == "Best Street Crew" && each.value(forKey: "league") as! String == "Pro League" && each.value(forKey: "ageCategory") as! String == "Adults")
-                {
-                    print("Tesable :", each)
-                    print("=========================END=======================")
-                    }
-            }
-            
-//            some2.map{$0.map{ if($0.value == "Best Classic Crew")
-//            {
-//                print("----------------: ", $0)
-//                }
-//                }}
-//            print("FFFF: ", some3)
-            ///
         }
     }
 
@@ -143,6 +123,21 @@ class ranksTableViewController: UITableViewController, updateRanksTable {
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
+    }
+    
+    func loadParticularCrewStack(nomination: String, league: String, ageCategory: String)
+    {
+        // need to specify what exactly do we need
+        reloadDataWithNewValues()
+        for each in crewsWithRates {
+            if (each.value(forKey: "nomination") as! String == nomination && each.value(forKey: "league") as! String == league && each.value(forKey: "ageCategory") as! String == ageCategory)
+            {
+                print("Testable :", each)
+                particularCrewStack.append(each)
+                print("=========================END=======================")
+            }
+        }
+        
     }
     
 }

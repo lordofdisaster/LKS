@@ -55,24 +55,13 @@ class ViewController: UIViewController, updateHeaderInformationWithRC, updateHea
     }
     
     func updateHeaderInformationFromSelectedCell(_nomination: String, _ageCategory: String, _league: String, _currentCrew: String) {
-        
-        
-        
-        
-        
-        
+
         let textAnimation = CATransition()
         textAnimation.type = kCATransitionPush;
         textAnimation.duration = 1.7;
         textAnimation.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseInEaseOut)
         
         self.currentCrewName.layer.add(textAnimation, forKey: "changeTextTransition")
-        
-        
-        
-        
-        
-        
         self.currentCrewName.text = _currentCrew
         print("nomination: ", _nomination, "_ageCategory: ", _ageCategory, "_league: ", _league)
         
