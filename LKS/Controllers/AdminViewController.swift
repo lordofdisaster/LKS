@@ -25,8 +25,8 @@ class AdminViewController: UIViewController {
     @IBOutlet weak var leagueSegmentToLoad: UISegmentedControl!
     
     
-    
-    let ranksTVC = ranksTableViewController()
+    var crewsStack = [NSDictionary]()
+    var ranksTVC = ranksTableViewController()
     
     @IBAction func createCrewButton(_ sender: Any)
     {
@@ -48,13 +48,36 @@ class AdminViewController: UIViewController {
     }
     
     @IBAction func loadCrewsForSpecifiedParameters(_ sender: UIButton) {
-        guard let nomination = nominationSegment.titleForSegment(at: nominationSegment.selectedSegmentIndex)
+        guard let nomination = nominationSegmentToLoad.titleForSegment(at: nominationSegmentToLoad.selectedSegmentIndex)
             else {  return  }
-        guard let league = leagueSegment.titleForSegment(at: leagueSegment.selectedSegmentIndex)
+        guard let league = leagueSegmentToLoad.titleForSegment(at: leagueSegmentToLoad.selectedSegmentIndex)
             else {  return  }
-        guard let ageCategory = ageCategorySegment.titleForSegment(at: ageCategorySegment.selectedSegmentIndex)
+        guard let ageCategory = ageCategorySegmentToLoad.titleForSegment(at: ageCategorySegmentToLoad.selectedSegmentIndex)
             else {  return  }
             delegateCrewsLoader?.loadParticularCrewStack(nomination: nomination, league: league, ageCategory: ageCategory)
+        
+        
+        
+
+        
+        //
+       
+            
+            for each in crewsStack {
+                if (each.value(forKey: "nomination") as! String == nomination && each.value(forKey: "league") as! String == league && each.value(forKey: "ageCategory") as! String == ageCategory)
+                {
+                    let crew = Crew(_name: each.value(forKey: "crewName") as! String, _nomination: nomination, _league: league, _ageCategory: ageCategory)
+                    
+                    FBManager.shared.putCrewToDataBaseToParticularStack(crew: crew)
+                    print(each)
+                    print("=========================END=======================")
+                }
+        }
+        //
+        
+        
+        
+       // delegateCrewsLoader?.reloadDataWithNewValues()
         
     }
     weak var delegateCrewsLoader: loadSpecifyedCrews?
@@ -63,7 +86,12 @@ class AdminViewController: UIViewController {
         super.viewDidLoad()
         seTitlesForSegmentedControllers()
         self.delegateCrewsLoader = ranksTVC
-        self.delegateCrewsLoader?.reloadDataWithNewValues()
+        FBManager.shared.getAllCrews { [unowned self] (crewContents, namesCrew) in
+            
+            for crew in namesCrew {
+                self.crewsStack.append(self.parseFetchedDataFromDB(crewsContents: crewContents, crewName: crew))
+            }
+        }
     }
     
     func seTitlesForSegmentedControllers()
@@ -98,5 +126,40 @@ class AdminViewController: UIViewController {
         
         
     }
+    
+    
+    func parseFetchedDataFromDB(crewsContents: NSDictionary, crewName: String) -> NSDictionary {
+        
+        var contentsForCell = NSDictionary()
+        
+        
+        let crewData = crewsContents.value(forKey: crewName) as! NSDictionary
+        let crewScore = crewData.value(forKey: "score") as! NSDictionary
+        print("SCORE: ", crewScore)
+        print("CrewData",crewData)
+        
+        let nomination = String(describing:crewData.value(forKey: "nomination")!)
+        let ageCategory = String(describing:crewData.value(forKey: "ageCategory")!)
+        let league = String(describing:crewData.value(forKey: "league")!)
+        
+        let charachter = String(describing: crewScore.value(forKey: "charachter")!)
+        let message = String(describing: crewScore.value(forKey: "message")!)
+        let perfomance = String(describing: crewScore.value(forKey: "perfomance")!)
+        let technique = String(describing: crewScore.value(forKey: "technique")!)
+        let total = String(describing: crewScore.value(forKey: "total")!)
+        
+        contentsForCell = ["crewName" : crewName,
+                           "technique" : technique,
+                           "charachter" : charachter,
+                           "perfomance" : perfomance,
+                           "message" : message,
+                           "total" : total,
+                           "nomination" : nomination,
+                           "ageCategory" : ageCategory,
+                           "league" : league]
+        
+        return contentsForCell
+    }
+    
     
 }

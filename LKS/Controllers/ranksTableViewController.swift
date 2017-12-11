@@ -47,18 +47,17 @@ class ranksTableViewController: UITableViewController, updateRanksTable, loadSpe
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    //    reloadDataWithNewValues()
+        reloadDataWithNewValues()
     }
     
     func reloadDataWithNewValues() {
         FBManager.shared.getAllCrews { [unowned self] (crewContents, namesCrew) in
             self.numberOfRowsInTableView = namesCrew.count
-            
+
             for crew in namesCrew {
                 self.crewsWithRates.append(self.parseFetchedDataFromDB(crewsContents: crewContents, crewName: crew))
             }
@@ -127,8 +126,6 @@ class ranksTableViewController: UITableViewController, updateRanksTable, loadSpe
     
     func loadParticularCrewStack(nomination: String, league: String, ageCategory: String)
     {
-        // need to specify what exactly do we need
-       
         for each in crewsWithRates {
             if (each.value(forKey: "nomination") as! String == nomination && each.value(forKey: "league") as! String == league && each.value(forKey: "ageCategory") as! String == ageCategory)
             {
@@ -136,8 +133,10 @@ class ranksTableViewController: UITableViewController, updateRanksTable, loadSpe
                 particularCrewStack.append(each)
                 print("=========================END=======================")
             }
+            
         }
-        
+        crewsWithRates = particularCrewStack
+        self.tableView.reloadData()
     }
     
 }

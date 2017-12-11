@@ -31,6 +31,21 @@ final class FBManager {
                                                        "total": crew.score.total])
     }
     
+    func putCrewToDataBaseToParticularStack(crew: Crew)
+    {
+        self.ref.child("CURRENT/" + crew.name).setValue(["nomination": crew.nomination,
+                                                      "ageCategory": crew.ageCategory,
+                                                      "league": crew.league])
+        
+        self.ref.child("CURRENT/" + crew.name + "/score").setValue(["technique": crew.score.technique,
+                                                                 "charachter": crew.score.charachter,
+                                                                 "perfomance": crew.score.perfomance,
+                                                                 "message": crew.score.message,
+                                                                 "total": crew.score.total])
+    }
+    
+    
+    
     func getAllCrews(result: @escaping (NSDictionary, [String]) -> Void)
     {
         ref.child("CREW").observeSingleEvent(of: .value, with: { (snapshot) in
