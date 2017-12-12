@@ -12,7 +12,7 @@ protocol updateHeaderInformationWithCellContents: class {
     func updateHeaderInformationFromSelectedCell(_nomination: String, _ageCategory: String, _league: String, _currentCrew: String)
 }
 
-class ranksTableViewController: UITableViewController, updateRanksTable, loadSpecifyedCrews {
+class ranksTableViewController: UITableViewController, updateRanksTable/*, loadSpecifyedCrews*/ {
   
     @IBOutlet weak var categoryLabel: UILabel!
     
@@ -51,7 +51,8 @@ class ranksTableViewController: UITableViewController, updateRanksTable, loadSpe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        reloadDataWithNewValues()
+       // reloadDataWithNewValues()
+        observeCrews()
     }
     
     func reloadDataWithNewValues() {
@@ -64,26 +65,43 @@ class ranksTableViewController: UITableViewController, updateRanksTable, loadSpe
             self.tableView.reloadData()
         }
     }
+    
+    
+    func reloadDataWithNewValuesPart() {
+        FBManager.shared.getAllCrewsPart { [unowned self] (crewContents, namesCrew) in
+            self.numberOfRowsInTableView = namesCrew.count
+            self.crewsWithRates.removeAll()
+            for crew in namesCrew {
+                self.crewsWithRates.append(self.parseFetchedDataFromDB(crewsContents: crewContents, crewName: crew))
+            }
+            self.tableView.reloadData()
+        }
+    }
 
     func parseFetchedDataFromDB(crewsContents: NSDictionary, crewName: String) -> NSDictionary {
         
         var contentsForCell = NSDictionary()
-
+            print("CONTENTS OF CELL", crewsContents, "CREW NAME", crewName)
         
             let crewData = crewsContents.value(forKey: crewName) as! NSDictionary
-            let crewScore = crewData.value(forKey: "score") as! NSDictionary
-            print("SCORE: ", crewScore)
+         //   let crewScore = crewData.value(forKey: "score") as! NSDictionary
+          //  print("SCORE: ", crewScore)
             print("CrewData",crewData)
             
             let nomination = String(describing:crewData.value(forKey: "nomination")!)
             let ageCategory = String(describing:crewData.value(forKey: "ageCategory")!)
             let league = String(describing:crewData.value(forKey: "league")!)
             
-            let charachter = String(describing: crewScore.value(forKey: "charachter")!)
-            let message = String(describing: crewScore.value(forKey: "message")!)
-            let perfomance = String(describing: crewScore.value(forKey: "perfomance")!)
-            let technique = String(describing: crewScore.value(forKey: "technique")!)
-            let total = String(describing: crewScore.value(forKey: "total")!)
+//            let charachter = String(describing: crewScore.value(forKey: "charachter")!)
+//            let message = String(describing: crewScore.value(forKey: "message")!)
+//            let perfomance = String(describing: crewScore.value(forKey: "perfomance")!)
+//            let technique = String(describing: crewScore.value(forKey: "technique")!)
+//            let total = String(describing: crewScore.value(forKey: "total")!)
+        let charachter = "0"
+        let message = "0"
+        let perfomance = "0"
+        let technique = "0"
+        let total = "0"
         
         contentsForCell = ["crewName" : crewName,
                            "technique" : technique,
@@ -124,19 +142,29 @@ class ranksTableViewController: UITableViewController, updateRanksTable, loadSpe
         }
     }
     
-    func loadParticularCrewStack(nomination: String, league: String, ageCategory: String)
-    {
-        for each in crewsWithRates {
-            if (each.value(forKey: "nomination") as! String == nomination && each.value(forKey: "league") as! String == league && each.value(forKey: "ageCategory") as! String == ageCategory)
-            {
-                print("Testable :", each)
-                particularCrewStack.append(each)
-                print("=========================END=======================")
-            }
-            
+//    func loadParticularCrewStack(nomination: String, league: String, ageCategory: String)
+//    {
+//        for each in crewsWithRates {
+//            if (each.value(forKey: "nomination") as! String == nomination && each.value(forKey: "league") as! String == league && each.value(forKey: "ageCategory") as! String == ageCategory)
+//            {
+//                print("Testable :", each)
+//                particularCrewStack.append(each)
+//                print("=========================END=======================")
+//            }
+//
+//        }
+//        crewsWithRates = particularCrewStack
+//        self.tableView.reloadData()
+//    }
+    
+    func observeCrews(){
+       FBManager.shared.ref.child("CURRENT").observe(.value, with: { (snapshot) in
+            print("=========OBSERVE CREWS==========",snapshot)
+            self.reloadDataWithNewValuesPart()
+        }) { (error) in
+            print(error.localizedDescription)
         }
-        crewsWithRates = particularCrewStack
-        self.tableView.reloadData()
     }
+
     
 }

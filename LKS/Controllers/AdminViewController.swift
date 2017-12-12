@@ -41,8 +41,10 @@ class AdminViewController: UIViewController {
         if name != ""
         {
             let crew = Crew(_name: name, _nomination: nomination, _league: league, _ageCategory: ageCategory)
-            print(crew.ageCategory, crew.league, crew.name, crew.nomination, crew.score)
+            print(crew)
+           // print(crew.ageCategory, crew.league, crew.name, crew.nomination, crew.score)
             FBManager.shared.putCrewToDataBase(crew: crew)
+            
         }
         self.crewNameTextField.text = ""
     }
@@ -54,14 +56,11 @@ class AdminViewController: UIViewController {
             else {  return  }
         guard let ageCategory = ageCategorySegmentToLoad.titleForSegment(at: ageCategorySegmentToLoad.selectedSegmentIndex)
             else {  return  }
-            delegateCrewsLoader?.loadParticularCrewStack(nomination: nomination, league: league, ageCategory: ageCategory)
-        
-        
+       //     delegateCrewsLoader?.loadParticularCrewStack(nomination: nomination, league: league, ageCategory: ageCategory)
         
 
-        
         //
-       
+       FBManager.shared.ref.child("CURRENT").removeValue()
             
             for each in crewsStack {
                 if (each.value(forKey: "nomination") as! String == nomination && each.value(forKey: "league") as! String == league && each.value(forKey: "ageCategory") as! String == ageCategory)
@@ -69,7 +68,7 @@ class AdminViewController: UIViewController {
                     let crew = Crew(_name: each.value(forKey: "crewName") as! String, _nomination: nomination, _league: league, _ageCategory: ageCategory)
                     
                     FBManager.shared.putCrewToDataBaseToParticularStack(crew: crew)
-                    print(each)
+                    print(each.value(forKey: "crewName") as! String)
                     print("=========================END=======================")
                 }
         }
@@ -85,8 +84,8 @@ class AdminViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         seTitlesForSegmentedControllers()
-        self.delegateCrewsLoader = ranksTVC
-        FBManager.shared.getAllCrews { [unowned self] (crewContents, namesCrew) in
+       // self.delegateCrewsLoader = ranksTVC
+        FBManager.shared.getAllCrews { [unowned self] (crewContents, namesCrew) in // set observer for update DB
             
             for crew in namesCrew {
                 self.crewsStack.append(self.parseFetchedDataFromDB(crewsContents: crewContents, crewName: crew))

@@ -59,4 +59,28 @@ final class FBManager {
         }
     }
     
+    func getAllCrewsPart(result: @escaping (NSDictionary, [String]) -> Void)
+    {
+        ref.child("CURRENT").observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.exists() {
+                let crewsContents = snapshot.value as! NSDictionary
+                let arrayOfAllCrewsNames: [String] = crewsContents.allKeys as! [String]
+                result(crewsContents, arrayOfAllCrewsNames)
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
+//    func observeCrews(){
+//        
+//        ref.child("CURRENT").observe(.value, with: { (snapshot) in
+//            print("=========OBSERVE CREWS==========",snapshot)
+//            self.dataReloaderDelegate?.reloadDataWithNewValues()
+//        }) { (error) in
+//            print(error.localizedDescription)
+//        }
+//    }
+
+    
 }
