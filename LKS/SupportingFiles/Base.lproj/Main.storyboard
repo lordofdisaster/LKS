@@ -714,40 +714,31 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5F-bP-Wfd">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crew Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlx-jH-k9f">
-                                                    <rect key="frame" x="0.0" y="0.0" width="187.5" height="87.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sEI-kB-KG7">
-                                                    <rect key="frame" x="187.5" y="0.0" width="187.5" height="87.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uKQ-HK-8ha">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
                                             <constraints>
-                                                <constraint firstItem="jlx-jH-k9f" firstAttribute="width" secondItem="sEI-kB-KG7" secondAttribute="width" id="db9-Q3-ClW"/>
-                                                <constraint firstItem="jlx-jH-k9f" firstAttribute="height" secondItem="sEI-kB-KG7" secondAttribute="height" id="oUc-Lk-Ngr"/>
+                                                <constraint firstAttribute="width" secondItem="uKQ-HK-8ha" secondAttribute="height" multiplier="375:88" id="T23-IJ-QpP"/>
                                             </constraints>
-                                        </stackView>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="a5F-bP-Wfd" secondAttribute="trailing" id="O5n-wz-f9N"/>
-                                        <constraint firstAttribute="bottom" secondItem="a5F-bP-Wfd" secondAttribute="bottom" id="UIh-gS-gaH"/>
-                                        <constraint firstItem="a5F-bP-Wfd" firstAttribute="top" secondItem="ghE-Fz-cke" secondAttribute="top" id="fi3-Pd-6MG"/>
-                                        <constraint firstItem="a5F-bP-Wfd" firstAttribute="height" secondItem="ghE-Fz-cke" secondAttribute="height" id="k9A-1K-WUt"/>
-                                        <constraint firstItem="a5F-bP-Wfd" firstAttribute="width" secondItem="ghE-Fz-cke" secondAttribute="width" id="s0Z-BF-MB9"/>
-                                        <constraint firstItem="a5F-bP-Wfd" firstAttribute="leading" secondItem="ghE-Fz-cke" secondAttribute="leading" id="xrP-5h-KbH"/>
+                                        <constraint firstItem="uKQ-HK-8ha" firstAttribute="leading" secondItem="ghE-Fz-cke" secondAttribute="leading" id="7lJ-Kb-nIy"/>
+                                        <constraint firstAttribute="trailing" secondItem="uKQ-HK-8ha" secondAttribute="trailing" id="Jzy-z6-Bag"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="uKQ-HK-8ha" secondAttribute="trailing" id="1A9-0n-9y7"/>
+                                    <constraint firstAttribute="bottom" secondItem="uKQ-HK-8ha" secondAttribute="bottom" id="5aS-ng-cZz"/>
+                                    <constraint firstItem="uKQ-HK-8ha" firstAttribute="top" secondItem="zyP-pz-qk8" secondAttribute="top" id="Q6J-La-Ppw"/>
+                                    <constraint firstItem="uKQ-HK-8ha" firstAttribute="height" secondItem="zyP-pz-qk8" secondAttribute="height" id="UQJ-1D-RUH"/>
+                                    <constraint firstItem="uKQ-HK-8ha" firstAttribute="width" secondItem="zyP-pz-qk8" secondAttribute="width" id="YWE-em-2Gg"/>
+                                    <constraint firstItem="uKQ-HK-8ha" firstAttribute="leading" secondItem="zyP-pz-qk8" secondAttribute="leading" id="tkl-uh-gxA"/>
+                                </constraints>
                                 <connections>
-                                    <outlet property="crewNameLabel" destination="jlx-jH-k9f" id="srZ-1V-dLx"/>
-                                    <outlet property="holderPlaceForJuryNamesAndRatesLables" destination="sEI-kB-KG7" id="aE0-gW-oxq"/>
+                                    <outlet property="holderPlaceForJuryNamesAndRatesLables" destination="uKQ-HK-8ha" id="FjH-5f-wLS"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -759,7 +750,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jQ6-Oo-Uf4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1087.2" y="760.11994002998506"/>
+            <point key="canvasLocation" x="-1087.2" y="759.67016491754134"/>
         </scene>
     </scenes>
 </document>

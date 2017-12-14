@@ -9,9 +9,28 @@
 import UIKit
 
 class adminResultsTableViewController: UITableViewController {
-
+    
+    var juryArray = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+//        
+//        let myGroup = DispatchGroup()
+//        
+//        
+//        myGroup.enter()
+//        FBManager.shared.getAllJuryNames { [unowned self] (arrayOfAllJuryNames) in
+//            self.juryArray = arrayOfAllJuryNames
+//            self.juryArray.append("Total")
+//            myGroup.leave()
+//        }
+//        
+//        myGroup.notify(queue: DispatchQueue.main) {
+//            let cell = self.tableView.dequeueReusableCell(withIdentifier: "JuryRanksCell") as! AdminResultTableViewCell
+//            cell.createLabelsForPrototype(arrayOfJuryNames: self.juryArray)
+//            self.tableView.reloadData()
+//        }
+//        
 
 //        FBManager.shared.getAllJuryNames { [unowned self] (arrayOfAllJuryNames) in
 //            print("arrayOfAllJuryNames: ", arrayOfAllJuryNames)
@@ -76,9 +95,12 @@ class adminResultsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "JuryRanksCell", for: indexPath) as! AdminResultTableViewCell
-        cell.createLabelsForPrototype()
-
+        //cell.createLabelsForPrototype(arrayOfJuryNames: ["12", "32", "13", "44"])
         
+        
+        
+        
+        print("============================Hello I am Cell=============================: ", cell.resultTotalRanksDict)
 
         return cell
     }

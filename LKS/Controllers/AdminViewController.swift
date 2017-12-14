@@ -88,6 +88,7 @@ class AdminViewController: UIViewController {
         super.viewDidLoad()
         seTitlesForSegmentedControllers()
         
+        
        // self.delegateCrewsLoader = ranksTVC
         FBManager.shared.getAllJuryNames { [unowned self] (arrayOfAllJuryNames) in
             self.juryNames = arrayOfAllJuryNames
