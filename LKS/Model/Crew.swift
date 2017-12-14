@@ -25,6 +25,24 @@ class Crew
         league = _league
         ageCategory = _ageCategory
     }
+    
+    convenience init (name: String,
+                      nomination: Nomination.RawValue,
+                      league: League.RawValue,
+                      ageCategory: AgeCategory.RawValue,
+                      technique: String,
+                      charachter: String,
+                      perfomance: String,
+                      message: String,
+                      total: String)
+    {
+        self.init(_name: name, _nomination: nomination, _league: league, _ageCategory: ageCategory)
+        score.charachter = Int(charachter)!
+        score.message = Int(message)!
+        score.perfomance = Int(perfomance)!
+        score.technique = Int(technique)!
+        score.total = Int(total)!
+    }
 }
 
 struct Score

@@ -15,6 +15,8 @@
 		854490821FA1CB8700BDB5DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 854490811FA1CB8700BDB5DB /* Assets.xcassets */; };
 		854490851FA1CB8700BDB5DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 854490831FA1CB8700BDB5DB /* LaunchScreen.storyboard */; };
 		8544908E1FA326EE00BDB5DB /* estimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544908D1FA326EE00BDB5DB /* estimationViewController.swift */; };
+		854777451FE1265F001111CD /* adminResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854777441FE1265F001111CD /* adminResultsTableViewController.swift */; };
+		854F48751FE25AAD0046926C /* AdminResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854F48741FE25AAD0046926C /* AdminResultTableViewCell.swift */; };
 		85509DB21FA8646E00E28B21 /* CrewRankCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85509DB11FA8646E00E28B21 /* CrewRankCellTableViewCell.swift */; };
 		85AD39BD1FA71D1C00AFE910 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85AD39BC1FA71D1B00AFE910 /* GoogleService-Info.plist */; };
 		85B09A631FB59B2100A5E5E8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B09A621FB59B2100A5E5E8 /* LoginViewController.swift */; };
@@ -39,6 +41,8 @@
 		854490841FA1CB8700BDB5DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		854490861FA1CB8700BDB5DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8544908D1FA326EE00BDB5DB /* estimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = estimationViewController.swift; sourceTree = "<group>"; };
+		854777441FE1265F001111CD /* adminResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = adminResultsTableViewController.swift; path = LKS/Controllers/adminResultsTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		854F48741FE25AAD0046926C /* AdminResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminResultTableViewCell.swift; sourceTree = "<group>"; };
 		85509DB11FA8646E00E28B21 /* CrewRankCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewRankCellTableViewCell.swift; sourceTree = "<group>"; };
 		85AD39BB1FA70CF500AFE910 /* LKS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LKS.entitlements; sourceTree = "<group>"; };
 		85AD39BC1FA71D1B00AFE910 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -73,6 +77,7 @@
 		850DC9611FA8294400CA3F89 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				854777441FE1265F001111CD /* adminResultsTableViewController.swift */,
 				852C77211FA3409300E0EFF1 /* ranksTableViewController.swift */,
 				85509DB11FA8646E00E28B21 /* CrewRankCellTableViewCell.swift */,
 				8544908D1FA326EE00BDB5DB /* estimationViewController.swift */,
@@ -119,6 +124,7 @@
 				854490811FA1CB8700BDB5DB /* Assets.xcassets */,
 				854490831FA1CB8700BDB5DB /* LaunchScreen.storyboard */,
 				8544907E1FA1CB8700BDB5DB /* Main.storyboard */,
+				854F48741FE25AAD0046926C /* AdminResultTableViewCell.swift */,
 				85B09A641FB5BAAB00A5E5E8 /* AdminViewController.swift */,
 				85B09A621FB59B2100A5E5E8 /* LoginViewController.swift */,
 			);
@@ -293,8 +299,10 @@
 				850DC9631FA8296400CA3F89 /* Crew.swift in Sources */,
 				85EA58C21FAAF008003C4C99 /* ViewController.swift in Sources */,
 				8544908E1FA326EE00BDB5DB /* estimationViewController.swift in Sources */,
+				854777451FE1265F001111CD /* adminResultsTableViewController.swift in Sources */,
 				85E410101FA85B3B00BD69AE /* MainControllerModel.swift in Sources */,
 				85509DB21FA8646E00E28B21 /* CrewRankCellTableViewCell.swift in Sources */,
+				854F48751FE25AAD0046926C /* AdminResultTableViewCell.swift in Sources */,
 				850DC9651FA83F3900CA3F89 /* FireBaseManager.swift in Sources */,
 				85B09A631FB59B2100A5E5E8 /* LoginViewController.swift in Sources */,
 				85CE5CC71FAC1D5F00FB9C1E /* Constants.swift in Sources */,

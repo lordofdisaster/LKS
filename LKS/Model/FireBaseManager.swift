@@ -44,6 +44,19 @@ final class FBManager {
                                                                  "total": crew.score.total])
     }
     
+    func putCrewToDataBaseOnJuryBehlf(crew: Crew, juryName: String)
+    {
+        self.ref.child(juryName + "/" + crew.name).setValue(["nomination": crew.nomination,
+                                                         "ageCategory": crew.ageCategory,
+                                                         "league": crew.league])
+        
+        self.ref.child(juryName + "/" + crew.name + "/score").setValue(["technique": crew.score.technique,
+                                                                    "charachter": crew.score.charachter,
+                                                                    "perfomance": crew.score.perfomance,
+                                                                    "message": crew.score.message,
+                                                                    "total": crew.score.total])
+    }
+    
     
     
     func getAllCrews(result: @escaping (NSDictionary, [String]) -> Void)
@@ -59,7 +72,7 @@ final class FBManager {
         }
     }
     
-    func getAllCrewsPart(result: @escaping (NSDictionary, [String]) -> Void)
+    func getCurrentCrews(result: @escaping (NSDictionary, [String]) -> Void)
     {
         ref.child("CURRENT").observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {

@@ -67,8 +67,8 @@ class ranksTableViewController: UITableViewController, updateRanksTable/*, loadS
     }
     
     
-    func reloadDataWithNewValuesPart() {
-        FBManager.shared.getAllCrewsPart { [unowned self] (crewContents, namesCrew) in
+    func reloadDataWithNewValuesForCurrentCrewStack() {
+        FBManager.shared.getCurrentCrews { [unowned self] (crewContents, namesCrew) in
             self.numberOfRowsInTableView = namesCrew.count
             self.crewsWithRates.removeAll()
             for crew in namesCrew {
@@ -126,7 +126,21 @@ class ranksTableViewController: UITableViewController, updateRanksTable/*, loadS
         {
             cell.updateRatesForCrewInCell(values: values, _totalScore: score)
 
-            var valueToUpdate = crewsWithRates[indexPathforCellToUpdate.row] as! [String:String]
+            var valueToUpdate = crewsWithRates[indexPathforCellToUpdate.row] as! [String:String] // valueToUpdate - crew
+            print("======values=====",valueToUpdate)
+            
+            let crew = Crew(name: valueToUpdate["crewName"]!,
+                            nomination: valueToUpdate["nomination"]!,
+                            league: valueToUpdate["league"]!,
+                            ageCategory: valueToUpdate["ageCategory"]!,
+                            technique: values["TECHNIQUE"]! as! String,
+                            charachter: values["CHARACTER"]! as! String,
+                            perfomance: values["PERFOMANCE"]! as! String,
+                            message: values["MESSAGE"]! as! String,
+                            total: score)
+           
+            FBManager.shared.putCrewToDataBaseOnJuryBehlf(crew: crew, juryName: FBManager.shared.juryName)
+            
             valueToUpdate.updateValue(values.value(forKey: "CHARACTER") as! String, forKey: "charachter")
             valueToUpdate.updateValue(values.value(forKey: "MESSAGE") as! String, forKey: "message")
             valueToUpdate.updateValue(values.value(forKey: "PERFOMANCE") as! String, forKey: "perfomance")
@@ -160,7 +174,7 @@ class ranksTableViewController: UITableViewController, updateRanksTable/*, loadS
     func observeCrews(){
        FBManager.shared.ref.child("CURRENT").observe(.value, with: { (snapshot) in
             print("=========OBSERVE CREWS==========",snapshot)
-            self.reloadDataWithNewValuesPart()
+            self.reloadDataWithNewValuesForCurrentCrewStack()
         }) { (error) in
             print(error.localizedDescription)
         }
