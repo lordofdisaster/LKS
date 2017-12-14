@@ -13,11 +13,47 @@ class adminResultsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+//        FBManager.shared.getAllJuryNames { [unowned self] (arrayOfAllJuryNames) in
+//            print("arrayOfAllJuryNames: ", arrayOfAllJuryNames)
+//            for juryName in arrayOfAllJuryNames {
+//                FBManager.shared.getAllJyryResults(juryName: juryName, result: { (crewContents, namesCrew) in
+//                    print("juryName: ", juryName)
+//                    print("namesCrew: ", namesCrew)
+//                    print("crewContents: ", crewContents)
+//                })
+//
+//            }
+        
+        
+        
+        
+        
+//
+//            arrayOfAllJuryNames.map{jury in
+//               let crews = juriesWithContents.value(forKey: jury) as! NSDictionary
+//               let allCrewsUnderJury: [String] = crews.allKeys as! [String]
+//
+//            }
+//
+//            for each in arrayOfAllJuryNames {
+//                print("----------")
+//                print(juriesWithContents.value(forKey: each))
+//                let a = juriesWithContents.value(forKey: each) as! NSDictionary
+//                print("A Values: ",a.allValues)
+//                print("A Keys: ", a.allKeys)
+//
+//                print("----------")
+//            }
+//
+//
+//
+//
+//
+//
+//
+//            let arrayOfCrewNames: [String] = juriesWithContents.map {$0.key as! String}
+//            print("juryNames: ", arrayOfCrewNames)
+//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,23 +65,24 @@ class adminResultsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "JuryRanksCell", for: indexPath) as! AdminResultTableViewCell
+        cell.createLabelsForPrototype()
 
-        // Configure the cell...
+        
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

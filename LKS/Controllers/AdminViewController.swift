@@ -14,7 +14,9 @@ protocol loadSpecifyedCrews: class {
 }
 
 class AdminViewController: UIViewController {
+    
 
+    @IBOutlet weak var resultJuryRanksHeader: UILabel!
     @IBOutlet weak var nominationSegment: UISegmentedControl!
     @IBOutlet weak var ageCategorySegment: UISegmentedControl!
     @IBOutlet weak var leagueSegment: UISegmentedControl!
@@ -27,6 +29,7 @@ class AdminViewController: UIViewController {
     
     var crewsStack = [NSDictionary]()
     var ranksTVC = ranksTableViewController()
+    var juryNames = [String]()
     
     @IBAction func createCrewButton(_ sender: Any)
     {
@@ -84,7 +87,14 @@ class AdminViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         seTitlesForSegmentedControllers()
+        
        // self.delegateCrewsLoader = ranksTVC
+        FBManager.shared.getAllJuryNames { [unowned self] (arrayOfAllJuryNames) in
+            self.juryNames = arrayOfAllJuryNames
+            self.juryNames.append("Total")
+            self.showHeaderResult(arrayOfJuryNames: self.juryNames)
+        }
+        
         FBManager.shared.getAllCrews { [unowned self] (crewContents, namesCrew) in // set observer for update DB
             
             for crew in namesCrew {
@@ -92,6 +102,19 @@ class AdminViewController: UIViewController {
             }
         }
     }
+    
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        FBManager.shared.getAllJuryNames { [unowned self] (arrayOfAllJuryNames) in
+//            self.juryNames = arrayOfAllJuryNames
+//            self.showHeaderResult(arrayOfJuryNames: arrayOfAllJuryNames)
+//        }
+//    }
+    
+    
+    
+    
     
     func seTitlesForSegmentedControllers()
     {
@@ -134,8 +157,8 @@ class AdminViewController: UIViewController {
         
         let crewData = crewsContents.value(forKey: crewName) as! NSDictionary
         let crewScore = crewData.value(forKey: "score") as! NSDictionary
-        print("SCORE: ", crewScore)
-        print("CrewData",crewData)
+//        print("SCORE: ", crewScore)
+//        print("CrewData",crewData)
         
         let nomination = String(describing:crewData.value(forKey: "nomination")!)
         let ageCategory = String(describing:crewData.value(forKey: "ageCategory")!)
@@ -160,5 +183,30 @@ class AdminViewController: UIViewController {
         return contentsForCell
     }
     
+    func showHeaderResult(arrayOfJuryNames: [String]) {
+        let crewNameLabelWidth = resultJuryRanksHeader.frame.width / 2
+        let crewNameRect = CGRect(x: resultJuryRanksHeader.frame.origin.x, y: 0, width: crewNameLabelWidth, height: 20)
+        let crewNameLabel = UILabel.init(frame: crewNameRect)
+        crewNameLabel.text = "Crew name"
+        crewNameLabel.textAlignment = .center
+        resultJuryRanksHeader.addSubview(crewNameLabel)
+        
+        let labelWidth = crewNameLabel.frame.width / CGFloat(arrayOfJuryNames.count)
+        for index in 0..<arrayOfJuryNames.count {
+            let rect = CGRect(x: crewNameLabel.frame.origin.x + crewNameLabel.frame.width + labelWidth * CGFloat(index), y: 0, width: labelWidth, height: 20)
+            let label = UILabel.init(frame: rect)
+            label.text = arrayOfJuryNames[index]
+            label.textAlignment = .center
+            resultJuryRanksHeader.addSubview(label)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToResults" {
+            if let vc = segue.destination as? adminResultsTableViewController {
+                
+            }
+        }
+    }
     
 }
