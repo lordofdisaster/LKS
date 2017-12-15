@@ -1,4 +1,4 @@
-//
+    //
 //  adminResultsTableViewController.swift
 //  LKS
 //
@@ -11,68 +11,40 @@ import UIKit
 class adminResultsTableViewController: UITableViewController {
     
     var juryArray = [String]()
+    var dataSource = [NSDictionary]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        
-//        let myGroup = DispatchGroup()
-//        
-//        
-//        myGroup.enter()
-//        FBManager.shared.getAllJuryNames { [unowned self] (arrayOfAllJuryNames) in
-//            self.juryArray = arrayOfAllJuryNames
-//            self.juryArray.append("Total")
-//            myGroup.leave()
-//        }
-//        
-//        myGroup.notify(queue: DispatchQueue.main) {
-//            let cell = self.tableView.dequeueReusableCell(withIdentifier: "JuryRanksCell") as! AdminResultTableViewCell
-//            cell.createLabelsForPrototype(arrayOfJuryNames: self.juryArray)
-//            self.tableView.reloadData()
-//        }
-//        
+        
+        let myGroup = DispatchGroup()
+        
+        myGroup.enter()
+        
+        FBManager.shared.getAllJuryNames { [unowned self] (arrayOfAllJuryNames) in
+            self.juryArray = arrayOfAllJuryNames
+            self.juryArray.append("Total")
+            
+            for juryName in arrayOfAllJuryNames {
+                myGroup.enter()
+                                FBManager.shared.getAllJyryResults(juryName: juryName, result: { (crewContents, namesCrew) in
+                                    for crew in namesCrew {
+                                        self.dataSource.append(self.parseFetchedDataFromDB(crewsContents: crewContents, crewName: crew, juryName: juryName))
+                                        
+                                    }
+                                    myGroup.leave()
+                                })
+           //      myGroup.leave()
+            }
+            myGroup.leave()
+        }
 
-//        FBManager.shared.getAllJuryNames { [unowned self] (arrayOfAllJuryNames) in
-//            print("arrayOfAllJuryNames: ", arrayOfAllJuryNames)
-//            for juryName in arrayOfAllJuryNames {
-//                FBManager.shared.getAllJyryResults(juryName: juryName, result: { (crewContents, namesCrew) in
-//                    print("juryName: ", juryName)
-//                    print("namesCrew: ", namesCrew)
-//                    print("crewContents: ", crewContents)
-//                })
-//
-//            }
-        
-        
-        
-        
-        
-//
-//            arrayOfAllJuryNames.map{jury in
-//               let crews = juriesWithContents.value(forKey: jury) as! NSDictionary
-//               let allCrewsUnderJury: [String] = crews.allKeys as! [String]
-//
-//            }
-//
-//            for each in arrayOfAllJuryNames {
-//                print("----------")
-//                print(juriesWithContents.value(forKey: each))
-//                let a = juriesWithContents.value(forKey: each) as! NSDictionary
-//                print("A Values: ",a.allValues)
-//                print("A Keys: ", a.allKeys)
-//
-//                print("----------")
-//            }
-//
-//
-//
-//
-//
-//
-//
-//            let arrayOfCrewNames: [String] = juriesWithContents.map {$0.key as! String}
-//            print("juryNames: ", arrayOfCrewNames)
-//        }
+        myGroup.notify(queue: DispatchQueue.main, execute: {
+            print("+++++++++DATA SOURSE++++++++")
+            print(self.dataSource)
+            print("+++++++++DATA SOURSE++++++++")
+            self.tableView.reloadData()
+
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -95,14 +67,51 @@ class adminResultsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "JuryRanksCell", for: indexPath) as! AdminResultTableViewCell
-        //cell.createLabelsForPrototype(arrayOfJuryNames: ["12", "32", "13", "44"])
+        if juryArray.count > 0 {
+            cell.createLabelsForPrototype(arrayOfJuryNames:juryArray)
+            cell.resultTotalRanksDict["crewNameLabel"]?.text = dataSource[indexPath.row].value(forKey: "crewName") as! String
+            for jury in juryArray {
+                cell.resultTotalRanksDict[jury]?.text = dataSource[indexPath.row].value(forKey: "total") as! String
+            }
+            
+        }
         
-        
-        
-        
-        print("============================Hello I am Cell=============================: ", cell.resultTotalRanksDict)
-
         return cell
+    }
+    
+    
+    func parseFetchedDataFromDB(crewsContents: NSDictionary, crewName: String, juryName: String) -> NSDictionary {
+        
+        var contentsForCell = NSDictionary()
+        
+        
+        let crewData = crewsContents.value(forKey: crewName) as! NSDictionary
+        let crewScore = crewData.value(forKey: "score") as! NSDictionary
+        //        print("SCORE: ", crewScore)
+        //        print("CrewData",crewData)
+        
+        let nomination = String(describing:crewData.value(forKey: "nomination")!)
+        let ageCategory = String(describing:crewData.value(forKey: "ageCategory")!)
+        let league = String(describing:crewData.value(forKey: "league")!)
+        
+        let charachter = String(describing: crewScore.value(forKey: "charachter")!)
+        let message = String(describing: crewScore.value(forKey: "message")!)
+        let perfomance = String(describing: crewScore.value(forKey: "perfomance")!)
+        let technique = String(describing: crewScore.value(forKey: "technique")!)
+        let total = String(describing: crewScore.value(forKey: "total")!)
+        
+        contentsForCell = ["crewName" : crewName,
+                           "technique" : technique,
+                           "charachter" : charachter,
+                           "perfomance" : perfomance,
+                           "message" : message,
+                           "total" : total,
+                           "nomination" : nomination,
+                           "ageCategory" : ageCategory,
+                           "league" : league,
+                           "juryName": juryName]
+        //print(contentsForCell)
+        return contentsForCell
     }
     
 

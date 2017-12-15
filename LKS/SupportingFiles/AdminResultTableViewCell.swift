@@ -14,16 +14,11 @@ class AdminResultTableViewCell: UITableViewCell {
 
     @IBOutlet weak var holderPlaceForJuryNamesAndRatesLables: UILabel!
     
-    var resultTotalRanksDict = [String:UILabel]() {
-        didSet{
-            print(self)
-        }
-    }
-    var juryNames = [String]()
+    var resultTotalRanksDict = [String:UILabel]()
     
     func createLabelsForPrototype(arrayOfJuryNames: [String]) {
         
-        let crewNameRect = CGRect(x: holderPlaceForJuryNamesAndRatesLables.frame.origin.x, y: 0, width: holderPlaceForJuryNamesAndRatesLables.frame.width, height: 30)
+        let crewNameRect = CGRect(x: holderPlaceForJuryNamesAndRatesLables.frame.origin.x, y: 0, width: holderPlaceForJuryNamesAndRatesLables.frame.width / 2, height: 30)
         let crewNameLabel = UILabel.init(frame: crewNameRect)
        // crewNameLabel.text = "super mega ebaniy crew"
         crewNameLabel.textAlignment = .center
@@ -44,12 +39,7 @@ class AdminResultTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        FBManager.shared.getAllJuryNames { [unowned self] (arrayOfAllJuryNames) in
-            self.juryNames = arrayOfAllJuryNames
-            self.juryNames.append("Total")
-            self.createLabelsForPrototype(arrayOfJuryNames: self.juryNames)
-        }
+       
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
