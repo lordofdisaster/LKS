@@ -88,20 +88,44 @@ class AdminViewController: UIViewController {
         super.viewDidLoad()
         seTitlesForSegmentedControllers()
         
+        let group = DispatchGroup()
         
+        group.enter()
        // self.delegateCrewsLoader = ranksTVC
         FBManager.shared.getAllJuryNames { [unowned self] (arrayOfAllJuryNames) in
             self.juryNames = arrayOfAllJuryNames
             self.juryNames.append("Total")
             self.showHeaderResult(arrayOfJuryNames: self.juryNames)
+            group.leave()
         }
         
         FBManager.shared.getAllCrews { [unowned self] (crewContents, namesCrew) in // set observer for update DB
-            
+
             for crew in namesCrew {
+                group.enter()
                 self.crewsStack.append(self.parseFetchedDataFromDB(crewsContents: crewContents, crewName: crew))
+                group.leave()
             }
         }
+        
+        
+        group.notify(queue: DispatchQueue.main, execute: {
+            for jyry in self.juryNames {
+                for crew in self.crewsStack {
+                    let crewToAdd = Crew(name: crew["crewName"]! as! String,
+                                         nomination: crew["nomination"]! as! Nomination.RawValue,
+                                         league: crew["league"]! as! League.RawValue,
+                                         ageCategory: crew["ageCategory"]! as! AgeCategory.RawValue,
+                                         technique: crew["technique"]! as! String,
+                                         charachter: crew["charachter"]! as! String,
+                                         perfomance: crew["perfomance"]! as! String,
+                                         message: crew["message"]! as! String,
+                                         total: crew["total"]! as! String)
+                    
+                    FBManager.shared.putCrewToDataBaseOnJuryBehlf(crew: crewToAdd, juryName: jyry)
+                }
+            }
+        })
     }
     
     

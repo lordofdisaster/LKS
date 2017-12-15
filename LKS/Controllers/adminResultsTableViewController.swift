@@ -11,7 +11,6 @@ import UIKit
 class adminResultsTableViewController: UITableViewController {
     var juryArray = [String]()
     var dataSource = [NSDictionary]()
-    var testibleArray = [NSDictionary]()
    
     
     override func viewDidLoad() {
@@ -33,7 +32,6 @@ class adminResultsTableViewController: UITableViewController {
 //                                    print("Crew: ", crew)
 //                                    print("juryName", juryName)
 //                                    print("crewContents", crewContents)
-                                        self.testibleArray.append(crewContents)
                                         self.dataSource.append(self.parseFetchedDataFromDB(crewsContents: crewContents, crewName: crew, juryName: juryName))
                                         
                                     }
@@ -68,15 +66,13 @@ class adminResultsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return 17
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "JuryRanksCell", for: indexPath) as! AdminResultTableViewCell
         if juryArray.count > 0 {
-            
-            print("test: ",testibleArray[indexPath.row].allValues)
             
             cell.createLabelsForPrototype(arrayOfJuryNames:juryArray)
             cell.resultTotalRanksDict["crewNameLabel"]?.text = dataSource[indexPath.row].value(forKey: "crewName") as! String
@@ -96,7 +92,7 @@ class adminResultsTableViewController: UITableViewController {
             
             for jury in juryArray {
                
-                cell.resultTotalRanksDict[jury]?.text = array[indexPath.row + juryArray.index(of: jury)!] //.value(forKey: "total") as! String
+                cell.resultTotalRanksDict[jury]?.text = array[juryArray.index(of: jury)!] //.value(forKey: "total") as! String
             }
         }
         return cell
@@ -108,18 +104,28 @@ class adminResultsTableViewController: UITableViewController {
         var contentsForCell = NSDictionary()
         
         
+        
+        
+        
         let crewData = crewsContents.value(forKey: crewName) as! NSDictionary
-        let crewScore = crewData.value(forKey: "score") as! NSDictionary
+        //   let crewScore = crewData.value(forKey: "score") as! NSDictionary
+        //  print("SCORE: ", crewScore)
+        print("CrewData",crewData)
         
         let nomination = String(describing:crewData.value(forKey: "nomination")!)
         let ageCategory = String(describing:crewData.value(forKey: "ageCategory")!)
         let league = String(describing:crewData.value(forKey: "league")!)
         
-        let charachter = String(describing: crewScore.value(forKey: "charachter")!)
-        let message = String(describing: crewScore.value(forKey: "message")!)
-        let perfomance = String(describing: crewScore.value(forKey: "perfomance")!)
-        let technique = String(describing: crewScore.value(forKey: "technique")!)
-        let total = String(describing: crewScore.value(forKey: "total")!)
+        //            let charachter = String(describing: crewScore.value(forKey: "charachter")!)
+        //            let message = String(describing: crewScore.value(forKey: "message")!)
+        //            let perfomance = String(describing: crewScore.value(forKey: "perfomance")!)
+        //            let technique = String(describing: crewScore.value(forKey: "technique")!)
+        //            let total = String(describing: crewScore.value(forKey: "total")!)
+        let charachter = "0"
+        let message = "0"
+        let perfomance = "0"
+        let technique = "0"
+        let total = "0"
         
         contentsForCell = ["crewName" : crewName,
                            "technique" : technique,
