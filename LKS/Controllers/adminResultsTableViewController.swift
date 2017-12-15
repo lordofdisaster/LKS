@@ -9,9 +9,10 @@
 import UIKit
 
 class adminResultsTableViewController: UITableViewController {
-    
     var juryArray = [String]()
     var dataSource = [NSDictionary]()
+    var testibleArray = [NSDictionary]()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,11 @@ class adminResultsTableViewController: UITableViewController {
                 myGroup.enter()
                                 FBManager.shared.getAllJyryResults(juryName: juryName, result: { (crewContents, namesCrew) in
                                     for crew in namesCrew {
+//                                    print("---------------------------------")
+//                                    print("Crew: ", crew)
+//                                    print("juryName", juryName)
+//                                    print("crewContents", crewContents)
+                                        self.testibleArray.append(crewContents)
                                         self.dataSource.append(self.parseFetchedDataFromDB(crewsContents: crewContents, crewName: crew, juryName: juryName))
                                         
                                     }
@@ -39,11 +45,12 @@ class adminResultsTableViewController: UITableViewController {
         }
 
         myGroup.notify(queue: DispatchQueue.main, execute: {
-            print("+++++++++DATA SOURSE++++++++")
-            print(self.dataSource)
-            print("+++++++++DATA SOURSE++++++++")
+//            print("+++++++++DATA SOURSE++++++++")
+//            print(self.dataSource)
+//            print("+++++++++DATA SOURSE++++++++")
             self.tableView.reloadData()
-
+            let some = self.dataSource.flatMap{$0.value(forKey: "crewName")}
+            print(some)
         })
     }
 
@@ -68,14 +75,30 @@ class adminResultsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "JuryRanksCell", for: indexPath) as! AdminResultTableViewCell
         if juryArray.count > 0 {
+            
+            print("test: ",testibleArray[indexPath.row].allValues)
+            
             cell.createLabelsForPrototype(arrayOfJuryNames:juryArray)
             cell.resultTotalRanksDict["crewNameLabel"]?.text = dataSource[indexPath.row].value(forKey: "crewName") as! String
-            for jury in juryArray {
-                cell.resultTotalRanksDict[jury]?.text = dataSource[indexPath.row].value(forKey: "total") as! String
+            
+            var array = [String]()
+            
+            dataSource.map{element in
+                if element.value(forKey: "crewName")as! String == dataSource[indexPath.row].value(forKey: "crewName") as! String {
+                    print(element.value(forKey: "total"))
+                    array.append(element.value(forKey: "total") as! String)
+                }
             }
             
+            array.append("tot")
+            
+            
+            
+            for jury in juryArray {
+               
+                cell.resultTotalRanksDict[jury]?.text = array[indexPath.row + juryArray.index(of: jury)!] //.value(forKey: "total") as! String
+            }
         }
-        
         return cell
     }
     
@@ -87,8 +110,6 @@ class adminResultsTableViewController: UITableViewController {
         
         let crewData = crewsContents.value(forKey: crewName) as! NSDictionary
         let crewScore = crewData.value(forKey: "score") as! NSDictionary
-        //        print("SCORE: ", crewScore)
-        //        print("CrewData",crewData)
         
         let nomination = String(describing:crewData.value(forKey: "nomination")!)
         let ageCategory = String(describing:crewData.value(forKey: "ageCategory")!)
@@ -110,8 +131,9 @@ class adminResultsTableViewController: UITableViewController {
                            "ageCategory" : ageCategory,
                            "league" : league,
                            "juryName": juryName]
-        //print(contentsForCell)
+
         return contentsForCell
+        
     }
     
 
