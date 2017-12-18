@@ -16,6 +16,7 @@ final class FBManager {
 
     var ref: DatabaseReference = Database.database().reference()
     var juryName = String()
+    var arrayOfAllNames = [String]()
     
     
     func putCrewToDataBase(crew: Crew)
@@ -95,6 +96,7 @@ final class FBManager {
                 
                 
                 result(arrayOfAllJuryNames)
+                self.arrayOfAllNames = arrayOfAllJuryNames
             }
         }) { (error) in
             print(error.localizedDescription)

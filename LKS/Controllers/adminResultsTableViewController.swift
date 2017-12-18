@@ -8,21 +8,27 @@
 
 import UIKit
 
-class adminResultsTableViewController: UITableViewController {
+
+    
+class adminResultsTableViewController: UITableViewController, getJuryArray {
     var juryArray = [String]()
     var dataSource = [NSDictionary]()
-   
+
+
+    func returnJuryArray() -> [String] {
+        return juryArray
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let myGroup = DispatchGroup()
         
         myGroup.enter()
         
         FBManager.shared.getAllJuryNames { [unowned self] (arrayOfAllJuryNames) in
             self.juryArray = arrayOfAllJuryNames
-            self.juryArray.append("Total")
+          //  self.juryArray.append("Total")
             
             for juryName in arrayOfAllJuryNames {
                 myGroup.enter()
@@ -46,9 +52,10 @@ class adminResultsTableViewController: UITableViewController {
 //            print("+++++++++DATA SOURSE++++++++")
 //            print(self.dataSource)
 //            print("+++++++++DATA SOURSE++++++++")
+           // self.passJyryArrayToCell?.getJuryArray(juries: self.juryArray)
+           // self.passJyryArrayToCell?.createLabelsForPrototype(arrayOfJuryNames: self.juryArray)
             self.tableView.reloadData()
-            let some = self.dataSource.flatMap{$0.value(forKey: "crewName")}
-            print(some)
+            
         })
     }
 
@@ -66,15 +73,16 @@ class adminResultsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return 17
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "JuryRanksCell", for: indexPath) as! AdminResultTableViewCell
-        if juryArray.count > 0 {
+        if self.juryArray.count > 0 {
             
-            cell.createLabelsForPrototype(arrayOfJuryNames:juryArray)
+            //cell.createLabelsForPrototype(arrayOfJuryNames:juryArray)
+            
             cell.resultTotalRanksDict["crewNameLabel"]?.text = dataSource[indexPath.row].value(forKey: "crewName") as! String
             
             var array = [String]()

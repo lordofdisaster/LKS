@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LKS/Controllers/ranksTableViewController.swift"
-            timestampString = "535057234.949233"
+            timestampString = "535306787.034479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "88"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LKS/Controllers/ranksTableViewController.swift"
-            timestampString = "535057234.949716"
+            timestampString = "535306787.034569"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LKS/Controllers/ranksTableViewController.swift"
-            timestampString = "535057234.950033"
+            timestampString = "535306787.034636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "174"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LKS/Controllers/ranksTableViewController.swift"
-            timestampString = "535057234.950335"
+            timestampString = "535306787.034703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "85"
@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LKS/Controllers/ranksTableViewController.swift"
-            timestampString = "535057234.950629"
+            timestampString = "535306787.034765"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "87"
@@ -90,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LKS/Controllers/ranksTableViewController.swift"
-            timestampString = "535057234.950924"
+            timestampString = "535306787.034828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "129"
@@ -106,7 +106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LKS/Controllers/ranksTableViewController.swift"
-            timestampString = "535057234.951221"
+            timestampString = "535306787.03489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "144"
@@ -122,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LKS/Controllers/ranksTableViewController.swift"
-            timestampString = "535057234.951517"
+            timestampString = "535306787.034951"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "130"
@@ -137,140 +137,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LKS/Controllers/adminResultsTableViewController.swift"
-            timestampString = "535058823.102133"
+            filePath = "LKS/Controllers/AdminViewController.swift"
+            timestampString = "535306787.035015"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "adminResultsTableViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LKS/Controllers/adminResultsTableViewController.swift"
-            timestampString = "535058823.102594"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "LKS.adminResultsTableViewController.tableView(__ObjC.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __ObjC.UITableViewCell"
-                  moduleName = "LKS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/edgarskobichevskiy/Desktop/LKS/LKS/Controllers/adminResultsTableViewController.swift"
-                  timestampString = "535058766.241225"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "87"
-                  endingLineNumber = "87"
-                  offsetFromSymbolStart = "2076">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__ObjC.NSDictionary) -&gt; () in LKS.adminResultsTableViewController.tableView(__ObjC.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __ObjC.UITableViewCell"
-                  moduleName = "LKS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/edgarskobichevskiy/Desktop/LKS/LKS/Controllers/adminResultsTableViewController.swift"
-                  timestampString = "535058766.243341"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "87"
-                  endingLineNumber = "87"
-                  offsetFromSymbolStart = "2633">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LKS/Controllers/adminResultsTableViewController.swift"
-            timestampString = "535058823.102929"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "LKS.adminResultsTableViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "LKS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/edgarskobichevskiy/Desktop/LKS/LKS/Controllers/adminResultsTableViewController.swift"
-                  timestampString = "535058766.249163"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23"
-                  offsetFromSymbolStart = "92">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Array&lt;Swift.String&gt;) -&gt; () in LKS.adminResultsTableViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "LKS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/edgarskobichevskiy/Desktop/LKS/LKS/Controllers/adminResultsTableViewController.swift"
-                  timestampString = "535058766.251965"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23"
-                  offsetFromSymbolStart = "17">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__ObjC.NSDictionary, Swift.Array&lt;Swift.String&gt;) -&gt; () in closure #1 (Swift.Array&lt;Swift.String&gt;) -&gt; () in LKS.adminResultsTableViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "LKS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/edgarskobichevskiy/Desktop/LKS/LKS/Controllers/adminResultsTableViewController.swift"
-                  timestampString = "535058766.254046"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23"
-                  offsetFromSymbolStart = "29">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LKS/Controllers/adminResultsTableViewController.swift"
-            timestampString = "535058823.103218"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "didReceiveMemoryWarning()"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "showHeaderResult(arrayOfJuryNames:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

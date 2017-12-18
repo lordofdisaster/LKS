@@ -63,7 +63,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        FBManager.shared.getAllJuryNames { (result) in 
+            print(result)
+        }
         // Do any additional setup after loading the view.
     }
 }

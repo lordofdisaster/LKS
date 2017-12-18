@@ -94,7 +94,7 @@ class AdminViewController: UIViewController {
        // self.delegateCrewsLoader = ranksTVC
         FBManager.shared.getAllJuryNames { [unowned self] (arrayOfAllJuryNames) in
             self.juryNames = arrayOfAllJuryNames
-            self.juryNames.append("Total")
+          //  self.juryNames.append("Total")
             self.showHeaderResult(arrayOfJuryNames: self.juryNames)
             group.leave()
         }
@@ -209,6 +209,8 @@ class AdminViewController: UIViewController {
     }
     
     func showHeaderResult(arrayOfJuryNames: [String]) {
+        var arrayOfJuryNamesWithTotalColumn = arrayOfJuryNames
+        arrayOfJuryNamesWithTotalColumn.append("Total")
         let crewNameLabelWidth = resultJuryRanksHeader.frame.width / 2
         let crewNameRect = CGRect(x: resultJuryRanksHeader.frame.origin.x, y: 0, width: crewNameLabelWidth, height: 20)
         let crewNameLabel = UILabel.init(frame: crewNameRect)
@@ -216,11 +218,11 @@ class AdminViewController: UIViewController {
         crewNameLabel.textAlignment = .center
         resultJuryRanksHeader.addSubview(crewNameLabel)
         
-        let labelWidth = crewNameLabel.frame.width / CGFloat(arrayOfJuryNames.count)
-        for index in 0..<arrayOfJuryNames.count {
+        let labelWidth = crewNameLabel.frame.width / CGFloat(arrayOfJuryNamesWithTotalColumn.count)
+        for index in 0..<arrayOfJuryNamesWithTotalColumn.count {
             let rect = CGRect(x: crewNameLabel.frame.origin.x + crewNameLabel.frame.width + labelWidth * CGFloat(index), y: 0, width: labelWidth, height: 20)
             let label = UILabel.init(frame: rect)
-            label.text = arrayOfJuryNames[index]
+            label.text = arrayOfJuryNamesWithTotalColumn[index]
             label.textAlignment = .center
             resultJuryRanksHeader.addSubview(label)
         }
