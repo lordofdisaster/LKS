@@ -26,6 +26,9 @@ class estimationViewController: UIViewController, UIPickerViewDataSource, UIPick
         print(countTotalScoreForCrew(values: juryRatesAndComment))
         
         delegateTableUpdater?.updateTableWithNewValues(_values: juryRatesAndComment, _totalScore: countTotalScoreForCrew(values: juryRatesAndComment))
+        
+        print("CREWNAME:::::: ",FBManager.shared.crewName)
+        FBManager.shared.putTotalForCrew(crewName: FBManager.shared.crewName, juryName: FBManager.shared.juryName, total: countTotalScoreForCrew(values: juryRatesAndComment))
         nullifyGradePicker()
     }
     

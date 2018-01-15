@@ -21,41 +21,30 @@ class adminResultsTableViewController: UITableViewController, getJuryArray {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        updateTableWithNewData()
+        observeChangesInJuriesMarks()
+    }
+    
+    func updateTableWithNewData() {
         let myGroup = DispatchGroup()
-        
         myGroup.enter()
         
         FBManager.shared.getAllJuryNames { [unowned self] (arrayOfAllJuryNames) in
             self.juryArray = arrayOfAllJuryNames
-          //  self.juryArray.append("Total")
             
             for juryName in arrayOfAllJuryNames {
                 myGroup.enter()
-                                FBManager.shared.getAllJyryResults(juryName: juryName, result: { (crewContents, namesCrew) in
-                                    for crew in namesCrew {
-//                                    print("---------------------------------")
-//                                    print("Crew: ", crew)
-//                                    print("juryName", juryName)
-//                                    print("crewContents", crewContents)
-                                        self.dataSource.append(self.parseFetchedDataFromDB(crewsContents: crewContents, crewName: crew, juryName: juryName))
-                                        
-                                    }
-                                    myGroup.leave()
-                                })
-           //      myGroup.leave()
+                FBManager.shared.getAllJyryResults(juryName: juryName, result: { (crewContents, namesCrew) in
+                    for crew in namesCrew {
+                        self.dataSource.append(self.parseFetchedDataFromDB(crewsContents: crewContents, crewName: crew, juryName: juryName))
+                    }
+                    myGroup.leave()
+                })
             }
             myGroup.leave()
         }
-
         myGroup.notify(queue: DispatchQueue.main, execute: {
-//            print("+++++++++DATA SOURSE++++++++")
-//            print(self.dataSource)
-//            print("+++++++++DATA SOURSE++++++++")
-           // self.passJyryArrayToCell?.getJuryArray(juries: self.juryArray)
-           // self.passJyryArrayToCell?.createLabelsForPrototype(arrayOfJuryNames: self.juryArray)
             self.tableView.reloadData()
-            
         })
     }
 
@@ -79,32 +68,39 @@ class adminResultsTableViewController: UITableViewController, getJuryArray {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "JuryRanksCell", for: indexPath) as! AdminResultTableViewCell
-        if self.juryArray.count > 0 {
+        if self.juryArray.count > 0 && dataSource.count > 0 {
             
-            //cell.createLabelsForPrototype(arrayOfJuryNames:juryArray)
             
-            cell.resultTotalRanksDict["crewNameLabel"]?.text = dataSource[indexPath.row].value(forKey: "crewName") as! String
+            cell.resultTotalRanksDict["crewNameLabel"]?.text = (dataSource[indexPath.row].value(forKey: "crewName") as! String)
             
-            var array = [String]()
+            print("resultTotalRanksDict:::::::::::::::::::::::::: ", cell.resultTotalRanksDict)
+            
+            
+            var arrayOfJuryMarks = [String]()
+            var arrayOfJuriesWithTotal = juryArray
+            
             
             dataSource.map{element in
                 if element.value(forKey: "crewName")as! String == dataSource[indexPath.row].value(forKey: "crewName") as! String {
                     print(element.value(forKey: "total"))
-                    array.append(element.value(forKey: "total") as! String)
+                    arrayOfJuryMarks.append(element.value(forKey: "total") as! String)
                 }
             }
+            let totalForParticularCrew = arrayOfJuryMarks.map { Int($0) as Int!}
+            let result = totalForParticularCrew.reduce(0, { x, y in x + y! })
+        
+            arrayOfJuryMarks.append(String(result))
+            arrayOfJuriesWithTotal.append("Total")
             
-            array.append("tot")
             
-            
-            
-            for jury in juryArray {
+            for jury in arrayOfJuriesWithTotal {
                
-                cell.resultTotalRanksDict[jury]?.text = array[juryArray.index(of: jury)!] //.value(forKey: "total") as! String
+                cell.resultTotalRanksDict[jury]?.text = arrayOfJuryMarks[arrayOfJuriesWithTotal.index(of: jury)!] //.value(forKey: "total") as! String
             }
         }
         return cell
     }
+    
     
     
     func parseFetchedDataFromDB(crewsContents: NSDictionary, crewName: String, juryName: String) -> NSDictionary {
@@ -149,6 +145,34 @@ class adminResultsTableViewController: UITableViewController, getJuryArray {
         return contentsForCell
         
     }
+    
+        func observeChangesInJuriesMarks(){
+    
+            FBManager.shared.ref.child("Juries").observe(.value, with: { (snapshot) in
+                print("=========OBSERVE JURIES==========",snapshot)
+                self.dataSource.removeAll()
+                for juryName in self.juryArray {
+                    
+                    FBManager.shared.getAllJyryResults(juryName: juryName, result: { (crewContents, namesCrew) in
+                        for crew in namesCrew {
+                            self.dataSource.append(self.parseFetchedDataFromDB(crewsContents: crewContents, crewName: crew, juryName: juryName))
+                        }
+                        self.tableView.reloadData()
+                       
+                    })
+                    
+                }
+
+            }) { (error) in
+                print(error.localizedDescription)
+            }
+        }
+    
+
+    
+    
+    
+    
     
 
     /*

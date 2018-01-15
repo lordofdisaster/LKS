@@ -16,6 +16,7 @@ final class FBManager {
 
     var ref: DatabaseReference = Database.database().reference()
     var juryName = String()
+    var crewName = String()
     var arrayOfAllNames = [String]()
     
     
@@ -126,5 +127,12 @@ final class FBManager {
 //        }
 //    }
 
+    
+    
+    func putTotalForCrew(crewName: String, juryName: String, total: String)
+    {
+        self.ref.child("Total/" + juryName + "/" + crewName).setValue(["total": total])
+
+    }
     
 }

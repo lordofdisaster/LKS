@@ -38,10 +38,11 @@ class ranksTableViewController: UITableViewController, updateRanksTable/*, loadS
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let currentCell = tableView.cellForRow(at: indexPath) as! CrewRankCellTableViewCell!
         indexPathforCellToUpdate = indexPath
         delegateHeaderUpdater?.updateHeaderInformationFromSelectedCell(_nomination: (currentCell?.nomination)!, _ageCategory: (currentCell?.ageCategory)!, _league: (currentCell?.league)!, _currentCrew: (currentCell?.crewNameLabel.text!)!)
-        
+        FBManager.shared.crewName = (currentCell?.crewNameLabel.text)!
 }
     
     
